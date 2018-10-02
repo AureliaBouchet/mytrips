@@ -1,0 +1,20 @@
+.home-banner{
+  width: 100vw;
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // justify-content: space-around;
+  flex-direction: column;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.5),
+    rgba(0,0,0,0.2)),
+    asset-url('home2.jpeg');
+  background-size: cover;
+}
+
+.home-banner-content{
+  color: white;
+  text-align: center;
+}
+
