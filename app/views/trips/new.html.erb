@@ -1,0 +1,15 @@
+<h1>Créer un nouveau voyage</h1>
+
+<div class="form-container">
+<div class="newtrip-form">
+  <%= simple_form_for @trip do |f| %>
+    <%= f.input :title, label: 'Titre' %>
+    <%= f.input :date_begin, label: 'Date début' %>
+    <%= f.input :date_end, label: 'Date fin'%>
+
+    <%#= f.input :photo, label: 'Ajouter une photo' %>
+
+    <%= f.submit "Ajouter un voyage", class: "btn btn-primary" %>
+  <% end %>
+</div>
+</div>
