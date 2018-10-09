@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .card{
@@ -28,10 +28,17 @@
   right: 5px;
 }
 
-.show-link {
+.card-show-link {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
 }
+.card-add-trip{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+

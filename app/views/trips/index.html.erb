@@ -11,15 +11,16 @@
        <!-- <p> <%#= @number_steps %> étapes</p> -->
       <div class="card-dates">
         <p> Du
-          <%= trip.date_begin %> au
-          <%= trip.date_end %>
+          <%= trip.date_begin.strftime("%-d %b %y") %> au
+          <%= trip.date_end.strftime("%-d %b %y") %>
         </p>
       </div>
-      <%= link_to "", trip_path(trip), class: "show-link" %>
+      <%= link_to "", trip_path(trip), class: "card-show-link" %>
     </div>
   <% end %>
-</div>
-
-<div class="links">
+<div class="card card-add-trip">
+  <i class="fas fa-plus-circle"></i>
   <%= link_to "Créer un nouveau voyage", new_trip_path %>
 </div>
+</div>
+
