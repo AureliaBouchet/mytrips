@@ -1,7 +1,9 @@
-<h1><%= @trip.title %></h1>
-<h4>Du <%= @trip.date_begin.strftime("%-d %b %y") %> au <%= @trip.date_end.strftime("%-d %b %y") %> (<%= (@trip.date_end - @trip.date_begin).to_i %> jours)</h4>
-
+<div class="trip-banner">
+  <h1><%= @trip.title %></h1>
+  <h4>Du <%= @trip.date_begin.strftime("%-d %b %y") %> au <%= @trip.date_end.strftime("%-d %b %y") %> (<%= (@trip.date_end - @trip.date_begin).to_i %> nuits)</h4>
   <p class= "text-center"><%= @steps.length %> étapes</p>
+</div>
+
 <div class="map">
 
 </div>
@@ -20,7 +22,7 @@
 
       <div class="dates">
          <i class="fas fa-calendar"></i> <%= step.date_begin.strftime("%-d %b %y") %> -
-        <%= step.date_end.strftime("%-d %b %y") %>  (<%= (step.date_end - step.date_begin).to_i %> jours)
+        <%= step.date_end.strftime("%-d %b %y") %>  (<%= (step.date_end - step.date_begin).to_i %> nuits)
       </div>
 
       <div class="comment">
@@ -33,6 +35,13 @@
         <p><%= step.hotel_price %> €/nuit </p>
       </div>
 
+        <div >
+      <%#= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_trip_step(step.id) %>
+      <%= link_to step_path(step),  method: :delete,
+                          data: { confirm: "Are you sure?" } do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+    </div>
     </div>
   <% end %>
 
