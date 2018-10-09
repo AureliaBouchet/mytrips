@@ -1,0 +1,22 @@
+.steps-cards-container{
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.step-card{
+  width: 75vw;
+  box-shadow: 1px 1px 1px $light-gray;
+  border: solid 1px $light-gray;
+  padding: 30px;
+  margin: 10px 0;
+
+}
+
+
+.love-tag{
+  color: #c40555;
+}
