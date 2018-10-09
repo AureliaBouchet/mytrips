@@ -1,12 +1,13 @@
 class TripsController < ApplicationController
   def index
     @user = current_user
-    @trips = Trip.all
+    @trips = Trip.where(user_id: @user)
 
   end
 
   def show
     @trip = Trip.find(params[:id])
+    @steps = Step.where(trip_id: params[:id])
   end
 
   def new
