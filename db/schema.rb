@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_093551) do
+ActiveRecord::Schema.define(version: 2018_10_11_193633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 2018_10_11_093551) do
     t.bigint "step_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["step_id"], name: "index_bars_on_step_id"
   end
 
@@ -42,6 +45,9 @@ ActiveRecord::Schema.define(version: 2018_10_11_093551) do
     t.bigint "step_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["step_id"], name: "index_hotels_on_step_id"
   end
 
@@ -52,6 +58,9 @@ ActiveRecord::Schema.define(version: 2018_10_11_093551) do
     t.bigint "step_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["step_id"], name: "index_restaurants_on_step_id"
   end
 
@@ -66,6 +75,9 @@ ActiveRecord::Schema.define(version: 2018_10_11_093551) do
     t.boolean "love_tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["trip_id"], name: "index_steps_on_trip_id"
   end
 
