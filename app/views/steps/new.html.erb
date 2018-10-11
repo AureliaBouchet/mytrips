@@ -3,7 +3,7 @@
 <div class="form-container">
 <div class="newtrip-form">
   <%= simple_form_for [@trip, @step] do |f| %>
-    <%= f.input :place, label: 'Place' %>
+    <%= f.input :address, label: 'Place' %>
     <%= f.input :date_begin, as: :date, label: 'Date début', selected: @trip.date_begin %>
     <%= f.input :date_end, label: 'Date fin', selected: @trip.date_end%>
     <%= f.input :comment, label: "Commentaire"%>

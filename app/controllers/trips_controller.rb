@@ -6,20 +6,21 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-    # @steps = Step.where(trip_id: params[:id])
+    @steps = Step.where(trip_id: params[:id])
     @restaurants = @trip.restaurants
     @bars = @trip.bars
     @hotels = @trip.hotels
     @activities = @trip.activities
 
-    @steps = Step.where(trip_id: params[:id]).where.not(latitude: nil, longitude: nil)
+    @steps_geoloc = Step.where(trip_id: params[:id])
 
-    @markers = @steps.map do |step|
+    @markers = @steps_geoloc.map do |step|
       {
         lat: step.latitude,
         lng: step.longitude#,
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
+    end
   end
 
   def new
