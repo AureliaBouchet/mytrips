@@ -1,0 +1,91 @@
+<% @steps.each_with_index do |step, index| %>
+    <div class="step-card">
+      <div class="step-destroy">
+        <%= link_to step_path(step),  method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="far fa-trash-alt"></i>
+          <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_step_path(step) %>
+        <% end %>
+      </div>
+      <div class="love-tag">
+        <% if step.love_tag == true %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      </div>
+      <h3> Etape  <%= index + 1 %> : <%= step.place %></h3>
+
+      <div class="dates text-center">
+        <i class="fas fa-calendar"></i> <%= step.date_begin.strftime("%-d %b %y") %> -
+        <%= step.date_end.strftime("%-d %b %y") %>  (<%= (step.date_end - step.date_begin).to_i %> nuits)
+      </div>
+
+      <div class="comment">
+        <h4>Commentaires</h4>
+        <p> <%= step.comment %> </p>
+      </div>
+
+      <div class="recommendation">
+        <h4>Recommandations</h4>
+        <p>Hotel(s)  <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_step_hotel_path(step.id) %></p>
+          <ul>
+            <%@hotels.where(step_id: step.id).each do |hotel| %>
+              <li>
+                <% if hotel.love_tag == true %><i class="fas fa-heart love-tag"></i><% end %>
+                <%= hotel.name.capitalize %> <%= hotel.price %>  -  <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_hotel_path(hotel) %>
+                <%= link_to hotel_path(hotel.id),  method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+
+
+        <p>Bar(s)  <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_step_bar_path(step.id) %></p>
+          <ul>
+            <%@bars.where(step_id: step.id).each do |bar| %>
+              <li>
+                <% if bar.love_tag == true %><i class="fas fa-heart love-tag"></i><% end %>
+                <%= bar.name.capitalize %> <%= bar.price %>  -  <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_bar_path(bar) %>
+                <%= link_to bar_path(bar.id),  method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+
+
+        <p>Restaurant(s)  <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_step_restaurant_path(step.id) %>  </p>
+
+          <ul>
+            <%@restaurants.where(step_id: step.id).each do |restaurant| %>
+              <li>
+                <% if restaurant.love_tag == true %><i class="fas fa-heart love-tag"></i><% end %>
+                <%= restaurant.name.capitalize %> <%= restaurant.price %>  -  <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_restaurant_path(restaurant) %>
+                <%= link_to restaurant_path(restaurant.id),  method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+
+
+
+        <p>Activité(s)  <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_step_activity_path(step.id) %></p>
+          <ul>
+
+            <%@activities.where(step_id: step.id).each do |activity| %>
+              <li>
+                <% if activity.love_tag == true %><i class="fas fa-heart love-tag"></i><% end %>
+                <%= activity.name.capitalize %> <%= activity.price %>  -  <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_activity_path(activity) %>
+                <%= link_to activity_path(activity.id),  method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+              </li>
+            <% end %>
+
+          </ul>
+
+
+      </div>
+
+    </div>
+  <% end %>

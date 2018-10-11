@@ -1,0 +1,16 @@
+<h1>Modifier l'étape</h1>
+
+<div class="form-container">
+<div class="newtrip-form">
+  <%= simple_form_for [@step] do |f| %>
+    <%= f.input :place, label: 'Place' %>
+    <%= f.input :date_begin, as: :date, label: 'Date début' %>
+    <%= f.input :date_end, label: 'Date fin'%>
+    <%= f.input :comment, label: "Commentaire"%>
+    <%= f.input :love_tag, label: "Coup de coeur"%>
+    <%#= f.input :photo, label: 'Ajouter une photo' %>
+
+    <%= f.submit "Modifier l'étape", class: "btn btn-primary" %>
+  <% end %>
+</div>
+</div>

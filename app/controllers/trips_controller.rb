@@ -7,6 +7,10 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
     @steps = Step.where(trip_id: params[:id])
+    @restaurants = @trip.restaurants
+    @bars = @trip.bars
+    @hotels = @trip.hotels
+    @activities = @trip.activities
   end
 
   def new

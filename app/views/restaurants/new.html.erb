@@ -1,0 +1,11 @@
+<div class="form-container">
+  <div class="newtrip-form">
+    <%= simple_form_for [@step, @restaurant] do |f| %>
+      <%= f.input :name, label: 'Nom' %>
+      <%= f.input :price, label: 'Prix' %>
+      <%= f.input :love_tag, label: "Coup de coeur"%>
+
+      <%= f.submit "Ajouter", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

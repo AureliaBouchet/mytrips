@@ -22,6 +22,22 @@ class StepsController < ApplicationController
       render :new
     end
   end
+  # def show
+  #   @step = Step.find(params[:id])
+  #   @restaurants = Restaurant.where(step_id: @step.id )
+
+  #   @bars = Bar.All
+  #   @hotels = Hotel.All
+  #   @activities = Activity.All
+  # end
+  def index
+    @trip = Trip.find(params[:trip_id])
+    @steps = Step.where(trip_id: @trip.id)
+    # @restaurants = Restaurant.All
+    # @bars = Bar.All
+    # @hotels = Hotel.All
+    # @activities = Activity.All
+  end
 
   def edit
     @step = Step.find(params[:id])
@@ -31,7 +47,8 @@ class StepsController < ApplicationController
     @step = Step.find(params[:id])
     @step.update(step_params)
     trip_id = @step.trip_id
-    redirect_to trip_path(trip_id)
+    @trip = Trip.find(trip_id)
+    redirect_to trip_path(@trip)
   end
 
   def destroy
@@ -44,6 +61,6 @@ class StepsController < ApplicationController
 
   private
   def step_params
-    params.require(:step).permit(:place, :comment, :date_begin, :date_end, :hotel_price, :hotel, :love_tag)
+    params.require(:step).permit(:place, :comment, :date_begin, :date_end, :love_tag)
   end
 end

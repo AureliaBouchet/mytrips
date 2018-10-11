@@ -6,17 +6,39 @@
   flex-direction: column;
 }
 
-
 .step-card{
   width: 75vw;
   box-shadow: 1px 1px 1px $light-gray;
   border: solid 1px $light-gray;
   padding: 30px;
-  margin: 10px 0;
+  margin: 15px 0;
+  position: relative;
+  p {
+    font-size: 16px;
+  }
+  h3{
+    margin: 5px;
+  }
+  li {
+    font-size: 14px;
+  }
+  h4{
+    top-margin: 10px;
+  }
   // background-color: $light-cyan;
 }
 
-
 .love-tag{
   color: #D23333;
+}
+
+.step-destroy{
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  border: solid 1px $light-gray;
+  border-radius: 50%;
+  background-color: white;
+  // background-color: $light-cyan;
+  padding: 10px ;
 }
