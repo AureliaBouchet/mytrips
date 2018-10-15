@@ -12,7 +12,7 @@ class TripsController < ApplicationController
     @hotels = @trip.hotels
     @activities = @trip.activities
 
-    @steps_geoloc = Step.where(trip_id: params[:id])
+    @steps_geoloc = Step.where(trip_id: params[:id]).where.not(latitude: nil, longitude: nil)
 
     @markers = @steps_geoloc.map do |step|
       {
@@ -21,6 +21,7 @@ class TripsController < ApplicationController
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
     end
+
   end
 
   def new
