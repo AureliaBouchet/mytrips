@@ -3,15 +3,15 @@
 <div class="form-container">
 <div class="newtrip-form">
   <%= simple_form_for [@trip, @step] do |f| %>
-    <%= f.input :place, label: 'Place' %>
-    <%= f.input :date_begin, as: :date, label: 'Date début' %>
-    <%= f.input :date_end, label: 'Date fin'%>
-    <%= f.input :comment, label: "Détail de l'étape"%>
+    <%= f.input :address, label: 'Localisation' %>
+    <%= f.input :place, label: 'Sous-titre' %>
+    <%= f.input :date_begin, as: :date, label: 'Date début', selected: @trip.date_begin %>
+    <%= f.input :date_end, label: 'Date fin', selected: @trip.date_end%>
+    <%= f.input :comment, label: "Commentaire", as: :text, rows: 6 %>
     <%= f.input :love_tag, label: "Coup de coeur"%>
-    <%= f.input :hotel, label: 'Hébergement'%>
-    <%= f.input :hotel_price, label: 'Prix (€/nuit)'%>
 
-    <%#= f.input :photo, label: 'Ajouter une photo' %>
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
 
     <%= f.submit "Ajouter l'étape", class: "btn btn-primary" %>
   <% end %>

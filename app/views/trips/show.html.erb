@@ -1,41 +1,29 @@
-<h1><%= @trip.title %></h1>
-<h4>Du <%= @trip.date_begin.strftime("%-d %b %y") %> au <%= @trip.date_end.strftime("%-d %b %y") %> (<%= (@trip.date_end - @trip.date_begin).to_i %> jours)</h4>
+<div class="trip-banner">
+  <h1><%= @trip.address %></h1>
+  <h1><%= @trip.title %></h1>
+  <h4>Du <%= @trip.date_begin.strftime("%-d %b %y") %> au <%= @trip.date_end.strftime("%-d %b %y") %> (<%= (@trip.date_end - @trip.date_begin).to_i %> nuits)</h4>
+  <p class="blank-steps text-center"> <i class="fas fa-project-diagram"></i> <%= @steps.length %> étapes</p>
 
-  <p class= "text-center"><%= @steps.length %> étapes</p>
-<div class="map">
 
+  <div class="edit-trip-link">
+  <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_trip_path(@trip) %>
+  </div>
 </div>
 
+
+
+  <div
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+></div>
+
+
+
 <div class="steps-cards-container">
-  <% @steps.each_with_index do |step, index| %>
-    <div class="step-card">
-    <%= index + 1 %>
-       <div class="love-tag">
-        <% if step.love_tag == true %>
-          <i class="fas fa-heart"></i>
-        <% end %>
-      </div>
-
-      <i class="fas fa-map-marker"></i> <%= step.place %>
-
-      <div class="dates">
-         <i class="fas fa-calendar"></i> <%= step.date_begin.strftime("%-d %b %y") %> -
-        <%= step.date_end.strftime("%-d %b %y") %>  (<%= (step.date_end - step.date_begin).to_i %> jours)
-      </div>
-
-      <div class="comment">
-        <p>Détail de l'étape : </p> <%= step.comment %>
-      </div>
-
-      <div class="hotel">
-        <i class="fas fa-bed"></i>
-        <%= step.hotel %>
-        <p><%= step.hotel_price %> €/nuit </p>
-      </div>
-
-    </div>
-  <% end %>
-
+        <%#= render 'steps/index' %>
+        <%= render 'steps/steps' %>
   <div class="step-card">
     <%= link_to "Ajouter une étape", new_trip_step_path(@trip)  %>
   </div>
