@@ -10,7 +10,6 @@ class StepsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @step = Step.new(step_params)
     @step.trip = @trip
-    # @playground.user = @user
     if @step.save
       @trip.number_steps += 1
 
@@ -31,8 +30,8 @@ class StepsController < ApplicationController
   #   @activities = Activity.All
   # end
   def index
-    @trip = Trip.find(params[:trip_id])
-    @steps = Step.where(trip_id: @trip.id)
+    # @trip = Trip.find(params[:trip_id])
+    # @steps = Step.where(trip_id: @trip.id)
     # @restaurants = Restaurant.All
     # @bars = Bar.All
     # @hotels = Hotel.All
@@ -61,6 +60,6 @@ class StepsController < ApplicationController
 
   private
   def step_params
-    params.require(:step).permit(:place, :comment, :date_begin, :date_end, :love_tag, :address, :longitude, :latitude)
+    params.require(:step).permit(:place, :comment, :date_begin, :date_end, :love_tag, :address, :longitude, :latitude, :photo)
   end
 end

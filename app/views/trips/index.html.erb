@@ -12,7 +12,8 @@
          url('<%= cl_image_path trip.photo, height: 300, width: 400, crop: :fill %>')">
     <% end %>
       <div class="card-title">
-        <h3> <%= trip.title %></h3>
+        <h3> <%= trip.address %></h3></br>
+        <p> <%= trip.title %></p>
         <%nb_steps = Step.where(trip_id: trip.id).length %>
         <p class="blank-steps"> <i class="fas fa-project-diagram"></i> <%= pluralize nb_steps, "étape" %></p>
       </div>

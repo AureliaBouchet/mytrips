@@ -6,19 +6,21 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-    @steps = Step.where(trip_id: params[:id])
+    @steps = Step.where(trip_id: params[:id]).sort_by{|step| step.date_begin}
     @restaurants = @trip.restaurants
     @bars = @trip.bars
     @hotels = @trip.hotels
     @activities = @trip.activities
 
-    @steps_geoloc = Step.where(trip_id: params[:id]).where.not(latitude: nil, longitude: nil)
+    @steps_geoloc = Step.where(trip_id: params[:id]).where.not(latitude: nil, longitude: nil).sort_by{|step| step.date_begin}
 
     @markers = @steps_geoloc.map do |step|
+
       {
         lat: step.latitude,
-        lng: step.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        lng: step.longitude,
+         infoWindow: { content: "#{step.address}"}
+         # infoWindow: { content: render_to_string(partial: "/steps/map_box", locals: { step: step }) }
       }
     end
 
@@ -40,6 +42,7 @@ class TripsController < ApplicationController
       #flash[:alert] = "Vous devez remplir les champs obligatoires"
       render :new
     end
+
   end
 
   def edit
@@ -59,12 +62,10 @@ class TripsController < ApplicationController
     # flash[:notice] = "Votre playground a bien été supprimé!"
   end
 
-
-
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :date_begin, :date_end, :photo)
+    params.require(:trip).permit(:title, :date_begin, :date_end, :photo, :address, :latitude, :longitude)
   end
 
 end

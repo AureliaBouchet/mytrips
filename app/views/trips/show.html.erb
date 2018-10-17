@@ -1,7 +1,13 @@
 <div class="trip-banner">
+  <h1><%= @trip.address %></h1>
   <h1><%= @trip.title %></h1>
   <h4>Du <%= @trip.date_begin.strftime("%-d %b %y") %> au <%= @trip.date_end.strftime("%-d %b %y") %> (<%= (@trip.date_end - @trip.date_begin).to_i %> nuits)</h4>
-  <p class= "text-center"><%= @steps.length %> étapes</p>
+  <p class="blank-steps text-center"> <i class="fas fa-project-diagram"></i> <%= @steps.length %> étapes</p>
+
+
+  <div class="edit-trip-link">
+  <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_trip_path(@trip) %>
+  </div>
 </div>
 
 
@@ -16,7 +22,8 @@
 
 
 <div class="steps-cards-container">
-        <%= render 'steps/index' %>
+        <%#= render 'steps/index' %>
+        <%= render 'steps/steps' %>
   <div class="step-card">
     <%= link_to "Ajouter une étape", new_trip_step_path(@trip)  %>
   </div>

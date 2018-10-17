@@ -22,6 +22,12 @@
   }
 }
 
-// .trip-banner{
-//   height: 300px;
-// }
+.trip-banner{
+  position: relative;
+}
+
+.edit-trip-link{
+  position : absolute;
+  top: 12px;
+  right: 100px;
+}
