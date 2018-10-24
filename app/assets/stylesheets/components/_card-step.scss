@@ -4,15 +4,15 @@
   border-left: solid 1px $light-gray;
   border-right: solid 1px $light-gray;
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: start;
-  overflow-x: auto;
-  // flex-direction: column;
+  // overflow-x: auto;
+  flex-direction: column;
 }
 
 .step-card{
-  max-width: 450px;
-  // box-shadow: 1px 1px 1px $light-gray;
+  max-width: 410px;
+  box-shadow: 1px 1px 1px $light-gray;
   border-top: solid 4px $blue;
   padding: 10px;
   margin: 5px 20px 5px 5px;
@@ -21,6 +21,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  background-color: $light-gray;
   p {
     font-size: 14px;
     font-style: lighter;
@@ -45,6 +46,7 @@
   }
 }
 .step-card-photo{
+  // border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

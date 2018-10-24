@@ -1,0 +1,53 @@
+.tabs {
+  // background: $light-blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px 0 10px;
+  position: absolute;
+  bottom: -30px;
+  // margin-bottom: 60px;
+
+}
+.tabs a {
+  color: white;
+}
+.tabs a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.tabs h3 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 0;
+}
+.tabs p {
+  opacity: 0.5;
+  margin-bottom: 0;
+}
+.tab {
+  background: $blue;
+  flex: 0 0 25%;
+  text-align: center;
+  padding: 20px 0;
+  border-right: solid 1px $light-gray;
+  border-left: solid 1px $light-gray;
+  width: 150px;
+  list-style: none;
+}
+.tab:first-child {
+  border-radius: 5px 0 0 0;
+}
+.tab:last-child {
+  border-radius: 0 5px 0 0;
+}
+.tab.active {
+  background: white;
+  color: black;
+}
+
+
+.tap-pane{
+  // padding-top: 60px !important;
+}
