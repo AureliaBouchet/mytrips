@@ -1,12 +1,12 @@
 class TripsController < ApplicationController
   def index
-    @user = current_user
-    @trips = Trip.where(user_id: @user).sort_by{|trip| trip.date_begin.year}.reverse
+    @trips = Trip.all
   end
 
   def show
     @trip = Trip.find(params[:id])
     @steps = Step.where(trip_id: params[:id]).sort_by{|step| step.date_begin}
+    @step = Step.new
     @restaurants = @trip.restaurants
     @bars = @trip.bars
     @hotels = @trip.hotels
@@ -19,8 +19,8 @@ class TripsController < ApplicationController
       {
         lat: step.latitude,
         lng: step.longitude,
-         infoWindow: { content: "#{step.address}"}
-         # infoWindow: { content: render_to_string(partial: "/steps/map_box", locals: { step: step }) }
+         # infoWindow: { content: "#{step.address}"}
+          infoWindow: { content: render_to_string(partial: "/steps/map_box", locals: { step: step }) }
       }
     end
 

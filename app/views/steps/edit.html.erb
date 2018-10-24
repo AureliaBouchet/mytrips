@@ -4,9 +4,13 @@
 <div class="newtrip-form">
   <%= simple_form_for [@step] do |f| %>
     <%= f.input :address, label: 'Localisation' %>
-    <%= f.input :date_begin, as: :date, label: 'Date début' %>
-    <%= f.input :date_end, label: 'Date fin'%>
-    <%= f.input :comment, label: "Commentaire", as: :text%>
+
+    <div class="date-form">
+      <%= f.input :date_begin, as: :date, label: 'Date début' %>
+      <%= f.input :date_end, label: 'Date fin'%>
+    </div>
+
+    <%= f.input :comment, label: "Description de l'étape", as: :text%>
     <%= f.input :love_tag, label: "Coup de coeur"%>
 
     <%= f.input :photo %>

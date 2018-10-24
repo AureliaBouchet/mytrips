@@ -24,10 +24,47 @@
 
 .trip-banner{
   position: relative;
+  display: flex;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // height: 400px;
+
+  h1{
+    font-size: 30px;
+    font-style: bold;
+    color: white;
+  }
+  h4 {
+    color: white;
+    font-style: lighter;
+  }
+  p {
+    color: white;
+  }
 }
 
-.edit-trip-link{
-  position : absolute;
-  top: 12px;
-  right: 100px;
+// .edit-trip-link{
+//   position : absolute;
+//   top: 12px;
+//   right: 100px;
+// }
+
+.step-banner-part{
+  width: 50%;
+  height: 400px;
+  text-align: center;
+  p{
+    font-size: 16px;
+    margin: 20px;
+  }
+}
+
+.banner-part{
+  // width: 60px ;
+  text-align: center;
+  margin-top: 40px;
+p{
+  margin: 20px
+}
 }

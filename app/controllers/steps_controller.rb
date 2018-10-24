@@ -6,7 +6,6 @@ class StepsController < ApplicationController
   end
 
   def create
-    # @user = current_user
     @trip = Trip.find(params[:trip_id])
     @step = Step.new(step_params)
     @step.trip = @trip
@@ -15,27 +14,11 @@ class StepsController < ApplicationController
 
       @trip.save
       redirect_to trip_path(@trip)
-      # flash[:notice] = "La création de votre nouveau playground a été effectuée"
+      flash[:notice] = "La création de votre voyage a été effectuée avec succès"
     else
       # flash[:alert] = "Vous devez remplir les champs obligatoires"
       render :new
     end
-  end
-  # def show
-  #   @step = Step.find(params[:id])
-  #   @restaurants = Restaurant.where(step_id: @step.id )
-
-  #   @bars = Bar.All
-  #   @hotels = Hotel.All
-  #   @activities = Activity.All
-  # end
-  def index
-    # @trip = Trip.find(params[:trip_id])
-    # @steps = Step.where(trip_id: @trip.id)
-    # @restaurants = Restaurant.All
-    # @bars = Bar.All
-    # @hotels = Hotel.All
-    # @activities = Activity.All
   end
 
   def edit

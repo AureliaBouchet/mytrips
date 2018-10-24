@@ -1,3 +1,12 @@
 <div class="gm-style-iw">
-  <p><%= step.address %></p>
+
+ <% if step.photo.blank? %>
+        <div class="small-step-card-parts" style="background-color: #5C6B73">
+      <% else %>
+        <div class="small-step-card-parts" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+             url('<%= cl_image_path step.photo, height: 150, width: 200, crop: :fill %>')">
+      <% end %>
+      <h3 style="color: white"><%= step.address %>
+    </h3>
+
 </div>
