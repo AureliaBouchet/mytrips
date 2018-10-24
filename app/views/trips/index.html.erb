@@ -33,6 +33,15 @@
           <%= trip.date_end.strftime("%-d %b %y") %>
         </p>
       </div>
+      <div class="card-photo">
+        <% trip_creator = User.find(trip.user_id) %>
+        <% if trip_creator.photo.file.nil? %>
+            <%=image_tag 'user.jpg', class: "small-profile-avatar card-avatar" %>
+          <% else %>
+             <%= cl_image_tag trip_creator.photo, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "small-profile-avatar card-avatar" %>
+          <% end %>
+
+      </div>
 
       <%= link_to "", trip_path(trip), class: "card-show-link" %>
     </div>
