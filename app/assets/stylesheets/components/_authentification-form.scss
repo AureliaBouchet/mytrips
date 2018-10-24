@@ -1,4 +1,15 @@
 .authentification-form{
-  width: 400px;
+  width: 320px;
   color: white;
+}
+
+.registration-form{
+  width: 320px;
+}
+.registration-container{
+  background: $light-blue;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 50px;
 }

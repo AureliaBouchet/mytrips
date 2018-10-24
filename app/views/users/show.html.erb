@@ -1,11 +1,27 @@
-<div class="title">
-<h1>Mon profil</h1>
+<div class="profile-banner">
+  <div class="profile-infos">
+    <% if current_user.photo.file.nil? %>
+      <% user_avatar = 'user.jpg' %>
+      <%=image_tag user_avatar, class: "big-profile-avatar" %>
+    <% else %>
+      <% user_avatar = current_user.photo %>
+      <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "big-profile-avatar"%>
+    <% end %>
+    <%= @user.name %>
+  </div>
+  <div class="profile-activity">
+    <div class="activity-detail"><p> <strong> <i class="fas fa-plane"></i> <%= @user.trips.count %></strong></br> voyages</p></div>
+    <div class="activity-detail"> <p><strong> <i class="fas fa-project-diagram"></i> <%= @user.steps.count %></strong></br> étapes </p></div>
+  </div>
+  <div class="profile-edit-link">
+    <%= link_to "Modifier",  edit_user_registration_path, class: "btn-blue" %>
+  </div>
 </div>
 
-
-<div class="title">
+<div class="profile-title">
   <h1>Mes voyages</h1>
 </div>
+
 
 <div class="cards">
   <% @trips.each do |trip| %>
@@ -45,7 +61,7 @@
 </div>
 </div>
 
-<div class="title">
+<div class="profile-title">
 <h1>Mon tableau</h1>
 </div>
 
