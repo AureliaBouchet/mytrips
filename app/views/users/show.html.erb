@@ -1,13 +1,12 @@
-<div class="search-banner">
-<div class="search-title">
-  <h1>Rechercher un voyage ou une étape</h1>
-  <input type="text">
+<div class="title">
+<h1>Mon profil</h1>
 </div>
-<div class="cloud" id="cA"><span id="sA"></span><span id="sB"></span></div>
-<div class="cloud" id="cB"><span id="sA"></span><span id="sB"></span></div>
-<!-- <div class="cloud" id="cC"><span id="sA"></span><span id="sB"></span></div> -->
-<div class="cloud" id="cD"><span id="sA"></span><span id="sB"></span></div>
+
+
+<div class="title">
+  <h1>Mes voyages</h1>
 </div>
+
 <div class="cards">
   <% @trips.each do |trip| %>
     <% if trip.photo.blank? %>
@@ -30,10 +29,23 @@
           <%= trip.date_end.strftime("%-d %b %y") %>
         </p>
       </div>
+      <div class="edit-links">
 
+      <%= link_to trip_path(trip.id),  method: :delete,
+                          data: { confirm: "Are you sure?" } do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+    </div>
       <%= link_to "", trip_path(trip), class: "card-show-link" %>
     </div>
   <% end %>
+<div class="card card-add-trip">
+  <i class="fas fa-plus-circle"></i>
+  <p> <%= link_to "", new_trip_path, class: "card-show-link"  %></p>
+</div>
+</div>
 
+<div class="title">
+<h1>Mon tableau</h1>
 </div>
 

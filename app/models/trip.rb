@@ -9,5 +9,7 @@ class Trip < ApplicationRecord
   has_many :hotels, through: :steps
   has_many :activities, through: :steps
 
+  belongs_to :user
+
   mount_uploader :photo, PhotoUploader
 end

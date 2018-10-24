@@ -12,7 +12,7 @@
   position: relative;
   box-shadow: 1px 1px 1px $light-gray;
   padding: 10px;
-  margin: 10px;
+  margin: 20px 30px;
   border: solid 1px $light-gray;
   display: flex;
    align-items: center;
@@ -25,6 +25,12 @@
   p {
     font-size: 14px;
     color: $light-gray;
+  }
+  &:hover{
+    width: 315px;
+    height: 215px;
+    transition: all ease 0.4s;
+  margin: 5px;
   }
 }
 .card-title{
@@ -65,7 +71,7 @@
   background-color: #D23333;
   text-align: center;
   border-radius: 4px;
-  width: 100px;
+  width: 150px;
   padding: 4px;
   color: white;
   box-shadow: 1px 1px 1px white;

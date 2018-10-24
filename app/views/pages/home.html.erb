@@ -1,9 +1,21 @@
 <div class="home-banner">
   <div class="home-banner-content">
     <h1>My Holidays Book</h1>
-    <p>Conservez vos voyages, partagez vos bons plans</p>
+    <p>Une nouvelle façon de voyager</p>
+    <!-- <p>Conservez vos voyages, partagez vos bons plans, inspirez-vous pour vos prochaines escapades</p> -->
   </div>
-
-    <%= link_to "Entrer", trips_path, class: "btn-home" %>
-
+  <div class="home-links">
+    <div class="search banner-part">
+      <%= link_to '<i class="fas fa-search"></i>'.html_safe, trips_path, class: "btn-home" %>
+      <p>Inspirez-vous et retrouvez des recommandations pour vos futurs voyages</p>
+    </div>
+    <div class="my-trips banner-part">
+      <% if user_signed_in? %>
+        <%= link_to '<i class="fas fa-bookmark"></i>'.html_safe, user_path(current_user), class: "btn-home" %>
+      <% else %>
+         <%= link_to '<i class="fas fa-bookmark"></i>'.html_safe, new_user_session_path, class: "btn-home" %>
+      <% end %>
+      <p>Conservez et partagez vos voyages et recommandations</p>
+    </div>
+  </div>
 </div>

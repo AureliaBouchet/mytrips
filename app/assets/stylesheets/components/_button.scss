@@ -3,6 +3,7 @@
   border-radius: 2px;
   padding: 10px 20px;
   margin-top: 20px;
+  width: 150px;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.3);
   color: white ;
@@ -10,5 +11,27 @@
     text-decoration: none;
     color: black;
     background-color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.home-links{
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.btn-blue{
+  // border: solid 1px white;
+  border-radius: 3px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  width: 150px;
+  text-decoration: none;
+  background-color: $blue;
+  color: white ;
+  &:hover {
+    text-decoration: none;
+    color: $blue;
+    background-color: $light-blue;
   }
 }
