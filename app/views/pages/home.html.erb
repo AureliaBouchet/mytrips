@@ -5,16 +5,18 @@
     <!-- <p>Conservez vos voyages, partagez vos bons plans, inspirez-vous pour vos prochaines escapades</p> -->
   </div>
   <div class="home-links">
-    <div class="search banner-part">
-      <%= link_to '<i class="fas fa-search"></i>'.html_safe, trips_path, class: "btn-home" %>
+    <div class="search banner-part btn-home">
+      <%= link_to "", trips_path, class: "card-show-link"  %>
+      <i class="fas fa-search"></i>
       <p>Inspirez-vous et retrouvez des recommandations pour vos futurs voyages</p>
     </div>
-    <div class="my-trips banner-part">
+    <div class="my-trips banner-part btn-home">
       <% if user_signed_in? %>
-        <%= link_to '<i class="fas fa-bookmark"></i>'.html_safe, user_path(current_user), class: "btn-home" %>
+        <%= link_to "", user_path(current_user), class: "card-show-link" %>
       <% else %>
-         <%= link_to '<i class="fas fa-bookmark"></i>'.html_safe, new_user_session_path, class: "btn-home" %>
+         <%= link_to "", new_user_session_path, class: "card-show-link" %>
       <% end %>
+         <i class="fas fa-bookmark"></i>
       <p>Conservez et partagez vos voyages et recommandations</p>
     </div>
   </div>
