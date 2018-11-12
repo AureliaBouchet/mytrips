@@ -8,7 +8,7 @@
     <h1><%= @trip.address %></h1>
     <h4>Du <%= @trip.date_begin.strftime("%-d %b %y") %> au <%= @trip.date_end.strftime("%-d %b %y") %> (<%= (@trip.date_end - @trip.date_begin).to_i %> nuits)</h4>
     <p><%= @trip.title %></p>
-    <p class="blank-steps text-center"> <i class="fas fa-project-diagram"></i> <%= @steps.length %> étapes</p>
+    <div><p class="blank-steps"> <i class="fas fa-project-diagram"></i> <%= @steps.length %> étapes</p></div>
     <% if current_user.id == @trip.user_id  %>
     <div class="edit-trip-link">
       <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_trip_path(@trip) %>
@@ -23,46 +23,43 @@
   data-markers="<%= @markers.to_json %>"
 ></div>
   </div>
-
-<ul class="tabs" role="tablist">
-      <li role="presentation" class="active tab" ><a href="#steps" aria-controls="profile" role="tab" data-toggle="tab">Etapes</a></li>
-      <li role="presentation" class="tab"><a href="#top" aria-controls="profile" role="tab" data-toggle="tab">Incontournables</a></li>
-      <li role="presentation" class="tab" ><a href="#conseils" aria-controls="profile" role="tab" data-toggle="tab">Conseils</a></li>
-
-  </ul>
-
 </div>
 
-<div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="steps">
-    <h3>Les étapes du voyage</h3>
-    <div class="steps-cards-container">
-            <%#= render 'steps/index' %>
+
     <% if current_user.id == @trip.user_id  %>
+    <div class="global-container">
+      <div class="steps-cards-container">
         <%= render 'steps/user_steps' %>
-    <!--   </div>
-    <div class="steps-cards-container"> -->
-      <div class="step-card">
-        <%= render 'steps/new' %>
+        <div class="step-card">
+          <%= link_to "ajouter une étape", new_trip_step_path(@trip) %>
+        </div>
+      </div>
+      <div class="step-advice">
+        <h3>Conseils pratiques</h3>
+        <ul>
+          <% @tips.each do |tip| %>
+          <li><%= tip %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
 
     <% else %>
+    <div class="global-container">
+    <div class="steps-cards-container">
       <%= render 'steps/steps' %>
+    </div>
+    <div class="step-advice">
+    <h3>Conseils pratiques</h3>
+    <ul>
+      <% @tips.each do |tip| %>
+      <li><%= tip %></li>
+      <% end %>
+    </ul>
+    </div>
     </div>
 
     <% end %>
-  </div>
-
-  <div role="tabpanel" class="tab-pane active" id="top">
-    <h3>Les incontournables du voyage </h3>
-  </div>
-  <div role="tabpanel" class="tab-pane active" id="conseils">
-    <h3>Conseils pratiques</h3>
-  </div>
-
-</div>
-
 
 
 

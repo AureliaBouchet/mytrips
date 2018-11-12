@@ -5,11 +5,14 @@
   transition: all 0.3s ease;
   height: 70px;
   padding: 0px 30px;
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
   margin: 0;
   position: relative;
+}
+
+@media(max-width: 600px) {
+  .navbar {
+    height: 140px;
+  }
 }
 
 .navbar-left{
@@ -19,15 +22,18 @@
   font-style: lighter;
   color: $blue;
   font-family: $headers-font;
+  a {
+    text-decoration: none;
+  }
 }
 /* Right section */
 .navbar-right {
   position: absolute;
-  top: 20px;
+  bottom: 10px;
   right: 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 /* Basic navbar item */
@@ -36,19 +42,8 @@
   padding: 0 20px;
 }
 
-/* Navbar link */
-.navbar-link {
-  color: #616668;
-  font-size: 14px;
-}
-.navbar-link:hover {
-  color: #da552f;
-  text-decoration: none;
-}
-
 /* Dropdown menu */
 .navbar-dropdown-menu {
-  // margin-top: 15px;
   box-shadow: 1px 1px 4px #E6E6E6;
   border-color: #E6E6E6;
 }

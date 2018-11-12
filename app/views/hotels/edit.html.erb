@@ -10,3 +10,7 @@
     <% end %>
   </div>
 </div>
+
+<%= link_to hotel_path(@hotel.id),  method: :delete, data: { confirm: "Are you sure?" } do %>
+  <i class="far fa-trash-alt">Supprimer</i>
+<% end %>
