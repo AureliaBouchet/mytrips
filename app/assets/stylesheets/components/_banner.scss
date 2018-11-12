@@ -37,7 +37,6 @@ p{
 .trip-banner{
   position: relative;
   display: flex;
-  // flex-direction: column;
   align-items: center;
   justify-content: center;
   // height: 400px;
@@ -55,6 +54,12 @@ p{
     color: white;
   }
 }
+@media(max-width: 600px) {
+  .trip-banner {
+    flex-direction: column;
+  }
+}
+
 
 // .edit-trip-link{
 //   position : absolute;
@@ -73,7 +78,11 @@ p{
     margin: 20px;
   }
 }
-
+@media(max-width: 600px) {
+  .step-banner-part {
+    width: 100%;
+  }
+}
 
 // ---------------------- PROFILE
 

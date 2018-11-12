@@ -1,15 +1,15 @@
-function displayElementContent() {
-  const elements = document.querySelectorAll('.step-card-reco-item');
+
+function displayContentOnClick() {
+  const elements = document.querySelectorAll('.btn-see');
+  const cards = document.querySelectorAll('.step-card-content')
   if (elements) {
     elements.forEach((element)=>{ element.addEventListener('click', (event)=>{
       const myItem = event.target
-      const item = myItem.dataset.item
       const id = myItem.dataset.idStep
-      const elt = document.getElementById(`${item}_${id}`);
-      // const comment = document.getElementById(`comment_${id}`);
-      // comment.classList.add("hidden");
+      const mycard = document.getElementById(`card_${id}`);
+      const elt = document.getElementById(`reco_content_${id}`);
       elt.classList.remove("hidden");
-      elt.classList.add("border");
+      mycard.classList.add("hidden");
       })
     })
   }
@@ -17,19 +17,21 @@ function displayElementContent() {
 
 function closeElementContent() {
   const closes = document.querySelectorAll('.close');
+  console.log(closes)
   if (closes) {
     closes.forEach((element)=>{ element.addEventListener('click', (event)=>{
-      console.log(event.target)
       const myItem = event.target
-      const item = myItem.dataset.item
       const id = myItem.dataset.idStep
-      const elt = document.getElementById(`${item}_${id}`);
+      const elt = document.getElementById(`reco_content_${id}`);
+      const mycard = document.getElementById(`card_${id}`);
       elt.classList.add("hidden");
-      elt.classList.remove("border");
+      mycard.classList.remove("hidden");
+
       })
     })
   }
 }
 
-export {displayElementContent};
+
+export {displayContentOnClick};
 export {closeElementContent};

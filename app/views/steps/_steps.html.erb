@@ -1,121 +1,91 @@
 <% @steps.each_with_index do |step, index| %>
   <div class="step-card">
-    <div class="step-card-parts">
+
+    <div class="step-card-top">
+      <h3> <%= index + 1 %>. <%= step.address %></h3> <p><i class="fas fa-calendar"></i> <%= (step.date_end - step.date_begin).to_i %> nuits</p>
+    </div>
+
       <% if step.photo.blank? %>
-        <div class="step-card-photo step-card-part" style="background-color: #5C6B73">
+        <div class="step-card-photo" style="background-color: #5C6B73">
       <% else %>
-        <div class="step-card-photo step-card-part" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-             url('<%= cl_image_path step.photo, height: 300, width: 400, crop: :fill %>')">
+        <div class="step-card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+             url('<%= cl_image_path step.photo, height: 450, width: 600, crop: :fill %>')">
       <% end %>
-      <!-- <div class="step-card-number"> <p> <%#= index + 1 %></p></div> -->
-          <div class="step-card-title">
-            <h3> <%= step.address %></h3></br>
-            <div class="dates text-center">
-               <p><i class="fas fa-calendar"></i> <%#= step.date_begin.strftime("%-d %b %y") %>
-              <%#= step.date_end.strftime("%-d %b %y") %> <%= (step.date_end - step.date_begin).to_i %> nuits</p></br>
-              <% if !step.love_tag.blank? %> <p class="love-tag"><i class="fas fa-heart">  </i>  <%= step.love_tag %></p> <% end %>
-            </div>
 
+        </div>
 
+        <div class="step-card-comment">
+          <div class="dates text-center">
+            <% if !step.love_tag.blank? %> <p class="love-tag"><i class="fas fa-heart">  </i>  <%= step.love_tag %></p> <% end %>
           </div>
+          <p> <%= step.comment %> </p>
         </div>
 
-      <div class="step-card-reco " id="reco_item_<%= step.id %>">
-        <div >
-          <i class="fas fa-bed step-card-reco-item reco-avatar" data-item="hotel" data-id-step="<%= step.id %>"></i>
-        </div>
-        <div >
-          <i class="fas fa-utensils step-card-reco-item reco-avatar" data-item="resto" data-id-step="<%= step.id %>"></i>
-        </div>
-        <div >
-          <i class="fas fa-glass-martini step-card-reco-item reco-avatar" data-item="bar" data-id-step="<%= step.id %>"></i>
-        </div>
-        <div >
-          <i class="fas fa-walking step-card-reco-item reco-avatar" data-item="acti" data-id-step="<%= step.id %>"></i>
-        </div>
-      </div>
 
-      <div class="step-card-part " id="reco_content_<%= step.id %>">
+      <div class="step-card-part" id="reco_content_<%= step.id %>">
 
-<!--         <div id="comment_<%= step.id %>" class="step-card-reco-content ">
-          <div class="content">
-          <p> <%#= step.comment %> </p>
-
-          </div>
-        </div> -->
-
-        <div id="hotel_<%= step.id %>" class="step-card-reco-content hidden">
-          <div>
-            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="hotel" data-id-step="<%= step.id %>"></i>
-          </div>
-          <h3>Hébergement(s)</h3></br>
+        <div id="hotel_<%= step.id %>" class="step-card-reco-content ">
           <ul>
             <%@hotels.where(step_id: step.id).each do |hotel| %>
-              <li class="content">
-<table>
-  <tr>
-    <td class= "small-td"><i class="fas fa-thumbs-up"></i></td>
-    <td class= "big-td"><strong>  <%= hotel.address %>  </strong> </br> <%= hotel.name.capitalize %></td>
-    <td class= "small-td"><%= hotel.price %> </td>
-  </tr>
-</table>
-
-
-
+              <li>
+                <i class="fas fa-bed"></i>
+                <strong><%= hotel.address %></strong>
+                <%= hotel.price %></br>
+                <%= hotel.name.capitalize %>
               </li>
             <% end %>
           </ul>
 
         </div>
 
-        <div id="resto_<%= step.id %>" class="step-card-reco-content hidden">
-          <div>
-            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="resto" data-id-step="<%= step.id %>" ></i>
-          </div>
-          <h3>Restaurant(s)</h3></br>
+        <div id="resto_<%= step.id %>" class="step-card-reco-content ">
           <ul>
             <%@restaurants.where(step_id: step.id).each do |restaurant| %>
               <li>
-
-                <%= restaurant.address %> <%= restaurant.price %>  -  <%= restaurant.name.capitalize %>
+                <i class="fas fa-utensils"></i>
+                <strong> <%= restaurant.address %> </strong>
+                <%= restaurant.price %> </br>
+                <%= restaurant.name.capitalize %>
               </li>
             <% end %>
           </ul>
 
         </div>
 
-        <div id="bar_<%= step.id %>" class="step-card-reco-content hidden">
-          <div>
-            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="bar" data-id-step="<%= step.id %>"></i>
-          </div>
-          <h3>Bar(s)</h3></br>
+        <div id="bar_<%= step.id %>" class="step-card-reco-content ">
           <ul>
             <%@bars.where(step_id: step.id).each do |bar| %>
               <li>
-                <%= bar.address %> <%= bar.price %>  - <%= bar.name.capitalize %>
+                <i class="fas fa-glass-martini"></i>
+                <strong> <%= bar.address %> </strong>
+                <%= bar.price %></br>
+                <%= bar.name.capitalize %>
               </li>
             <% end %>
           </ul>
         </div>
 
-        <div id="acti_<%= step.id %>" class="step-card-reco-content hidden">
-          <div  >
-            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="acti" data-id-step="<%= step.id %>"></i>
-          </div>
-          <h3>Activités(s)</h3></br>
+        <div id="acti_<%= step.id %>" class="step-card-reco-content ">
           <ul>
             <%@activities.where(step_id: step.id).each do |activity| %>
-              <li> <%= activity.name.capitalize %> <%= activity.price %> </li>
+              <li>
+                <i class="fas fa-walking"></i>
+                <%= activity.name.capitalize %>
+                <%= activity.price %>
+              </li>
             <% end %>
-
           </ul>
-
         </div>
 
       </div>
+    <div class="step-card-bottom">
+      <i class="fas fa-share"></i>
+      <i class="fas fa-bookmark"></i>
+
+    </div>
 
   </div>
 
-  </div>
+
 <% end %>
 
