@@ -1,10 +1,11 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all
+    @trips = Trip.all.where.not(user_id: current_user)
   end
 
   def show
     @trip = Trip.find(params[:id])
+    @tips = Tip.where(trip_id: params[:id])
     @steps = Step.where(trip_id: params[:id]).sort_by{|step| step.date_begin}
     @step = Step.new
     @restaurants = @trip.restaurants
@@ -36,7 +37,7 @@ class TripsController < ApplicationController
     @trip.user_id = @user.id
 
     if @trip.save
-      redirect_to trip_path(@trip)
+      redirect_to new_trip_step_path(@trip)
      # flash[:notice] = "Votre nouveau voyage a été créé avec succès !"
     else
       #flash[:alert] = "Vous devez remplir les champs obligatoires"
@@ -58,7 +59,8 @@ class TripsController < ApplicationController
   def destroy
     @trip = Trip.find(params[:id])
     @trip.destroy
-    redirect_to trips_path
+    user = current_user
+    redirect_to user_path(user)
     # flash[:notice] = "Votre playground a bien été supprimé!"
   end
 

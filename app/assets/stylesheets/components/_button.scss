@@ -21,19 +21,46 @@
   flex-wrap: wrap;
 }
 
+
+.btn-bottom-card{
+  position: absolute;
+  bottom: -20px;
+  font-size:16px;
+}
+
 .btn-blue{
-  // border: solid 1px white;
+
   border-radius: 1px;
   padding: 10px 20px;
   margin-top: 20px;
-  width: 150px;
-  text-decoration: none;
+  // width: 150px;
   background-color: $blue;
+  font-size: 14px;
   color: white ;
+    a{
+  color: white ;
+  text-decoration: none;
+  }
   &:hover {
     text-decoration: none;
     color: $blue;
     background-color: $light-blue;
     border: solid 1px white;
+  }
+}
+
+.navbar-btn-white {
+  margin-top: 20px;
+  padding: 10px 20px;
+  a{
+  color: $gray;
+  font-size: 14px;
+  text-decoration: none;
+  }
+}
+.navbar-btn-white:hover {
+  a{
+    color: #da552f;
+  text-decoration: none;
   }
 }

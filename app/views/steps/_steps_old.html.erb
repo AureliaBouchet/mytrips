@@ -1,0 +1,315 @@
+<% @steps.each_with_index do |step, index| %>
+  <div class="step-card">
+    <div class="step-card-parts">
+      <% if step.photo.blank? %>
+        <div class="step-card-photo step-card-part" style="background-color: #5C6B73">
+      <% else %>
+        <div class="step-card-photo step-card-part" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+             url('<%= cl_image_path step.photo, height: 300, width: 400, crop: :fill %>')">
+      <% end %>
+      <!-- <div class="step-card-number"> <p> <%#= index + 1 %></p></div> -->
+          <div class="step-card-title">
+            <h3> <%= step.address %></h3></br>
+            <div class="dates text-center">
+               <p><i class="fas fa-calendar"></i> <%#= step.date_begin.strftime("%-d %b %y") %>
+              <%#= step.date_end.strftime("%-d %b %y") %> <%= (step.date_end - step.date_begin).to_i %> nuits</p></br>
+              <% if !step.love_tag.blank? %> <p class="love-tag"><i class="fas fa-heart">  </i>  <%= step.love_tag %></p> <% end %>
+            </div>
+
+
+          </div>
+        </div>
+
+      <div class="step-card-reco " id="reco_item_<%= step.id %>">
+        <div >
+          <i class="fas fa-bed step-card-reco-item reco-avatar" data-item="hotel" data-id-step="<%= step.id %>"></i>
+        </div>
+        <div >
+          <i class="fas fa-utensils step-card-reco-item reco-avatar" data-item="resto" data-id-step="<%= step.id %>"></i>
+        </div>
+        <div >
+          <i class="fas fa-glass-martini step-card-reco-item reco-avatar" data-item="bar" data-id-step="<%= step.id %>"></i>
+        </div>
+        <div >
+          <i class="fas fa-walking step-card-reco-item reco-avatar" data-item="acti" data-id-step="<%= step.id %>"></i>
+        </div>
+      </div>
+
+      <div class="step-card-part " id="reco_content_<%= step.id %>">
+
+<!--         <div id="comment_<%= step.id %>" class="step-card-reco-content ">
+          <div class="content">
+          <p> <%#= step.comment %> </p>
+
+          </div>
+        </div> -->
+
+        <div id="hotel_<%= step.id %>" class="step-card-reco-content hidden">
+          <div>
+            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="hotel" data-id-step="<%= step.id %>"></i>
+          </div>
+          <h3>Hébergement(s)</h3></br>
+          <ul>
+            <%@hotels.where(step_id: step.id).each do |hotel| %>
+              <li class="content">
+<table>
+  <tr>
+    <td class= "small-td"><i class="fas fa-thumbs-up"></i></td>
+    <td class= "big-td"><strong>  <%= hotel.address %>  </strong> </br> <%= hotel.name.capitalize %></td>
+    <td class= "small-td"><%= hotel.price %> </td>
+  </tr>
+</table>
+
+
+
+              </li>
+            <% end %>
+          </ul>
+
+        </div>
+
+        <div id="resto_<%= step.id %>" class="step-card-reco-content hidden">
+          <div>
+            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="resto" data-id-step="<%= step.id %>" ></i>
+          </div>
+          <h3>Restaurant(s)</h3></br>
+          <ul>
+            <%@restaurants.where(step_id: step.id).each do |restaurant| %>
+              <li>
+
+                <%= restaurant.address %> <%= restaurant.price %>  -  <%= restaurant.name.capitalize %>
+              </li>
+            <% end %>
+          </ul>
+
+        </div>
+
+        <div id="bar_<%= step.id %>" class="step-card-reco-content hidden">
+          <div>
+            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="bar" data-id-step="<%= step.id %>"></i>
+          </div>
+          <h3>Bar(s)</h3></br>
+          <ul>
+            <%@bars.where(step_id: step.id).each do |bar| %>
+              <li>
+                <%= bar.address %> <%= bar.price %>  - <%= bar.name.capitalize %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div id="acti_<%= step.id %>" class="step-card-reco-content hidden">
+          <div  >
+            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="acti" data-id-step="<%= step.id %>"></i>
+          </div>
+          <h3>Activités(s)</h3></br>
+          <ul>
+            <%@activities.where(step_id: step.id).each do |activity| %>
+              <li> <%= activity.name.capitalize %> <%= activity.price %> </li>
+            <% end %>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+  </div>
+
+  </div>
+<% end %>
+
+
+
+
+<!-- sauvegarde des onglets -->
+
+<ul class="tabs" role="tablist">
+      <li role="presentation" class="active tab" ><a href="#steps" aria-controls="profile" role="tab" data-toggle="tab">Etapes</a></li>
+      <li role="presentation" class="tab"><a href="#top" aria-controls="profile" role="tab" data-toggle="tab">Incontournables</a></li>
+      <li role="presentation" class="tab" ><a href="#conseils" aria-controls="profile" role="tab" data-toggle="tab">Conseils</a></li>
+
+</ul>
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active top-margin" id="steps">
+  <!--   <h3>Les étapes du voyage</h3> -->
+            <%#= render 'steps/index' %>
+    <% if current_user.id == @trip.user_id  %>
+    <div class="steps-cards-container">
+      <%= render 'steps/user_steps' %>
+      <div class="step-card">
+        <%= render 'steps/new' %>
+      </div>
+    </div>
+
+    <% else %>
+    <div class="steps-cards-container">
+      <%= render 'steps/steps' %>
+    </div>
+    <div class="steps-advice">
+
+    </div>
+
+    <% end %>
+  </div>
+
+  <div role="tabpanel" class="tab-pane top-margin" id="top">
+    <h3>Les incontournables du voyage </h3>
+  </div>
+  <div role="tabpanel" class="tab-pane top-margin" id="conseils">
+    <h3>Conseils pratiques</h3>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% @steps.each_with_index do |step, index| %>
+  <div class="step-card">
+    <div class="step-card-parts">
+      <% if step.photo.blank? %>
+        <div class="step-card-photo step-card-part" style="background-color: #5C6B73">
+      <% else %>
+        <div class="step-card-photo step-card-part" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+             url('<%= cl_image_path step.photo, height: 300, width: 400, crop: :fill %>')">
+      <% end %>
+      <!-- <div class="step-card-number"> <p> <%#= index + 1 %></p></div> -->
+          <div class="step-card-title">
+            <h3> <%= step.address %></h3>
+            <div class="dates text-center">
+              <p><i class="fas fa-calendar"></i> <%#= step.date_begin.strftime("%-d %b %y") %>
+              <%#= step.date_end.strftime("%-d %b %y") %> <%= (step.date_end - step.date_begin).to_i %> nuits</p></br>
+               <% if !step.love_tag.blank? %> <p class="love-tag"><i class="fas fa-heart">  </i>  <%= step.love_tag %></p> <% end %>
+            </div>
+            <br>
+            <div class="step-card-links links">
+              <%= link_to step_path(step),  method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="far fa-trash-alt"></i>
+              <% end %>
+              <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_step_path(step) %>
+            </div>
+          </div>
+        </div>
+
+      <div class="step-card-reco " id="reco_item_<%= step.id %>">
+        <div >
+          <i class="fas fa-bed step-card-reco-item reco-avatar" data-item="hotel" data-id-step="<%= step.id %>"></i>
+        </div>
+        <div >
+          <i class="fas fa-utensils step-card-reco-item reco-avatar" data-item="resto" data-id-step="<%= step.id %>"></i>
+        </div>
+        <div >
+          <i class="fas fa-glass-martini step-card-reco-item reco-avatar" data-item="bar" data-id-step="<%= step.id %>"></i>
+        </div>
+        <div >
+          <i class="fas fa-walking step-card-reco-item reco-avatar" data-item="acti" data-id-step="<%= step.id %>"></i>
+        </div>
+      </div>
+
+      <div class="step-card-part " id="reco_content_<%= step.id %>">
+
+        <div id="comment_<%= step.id %>" class="step-card-reco-content ">
+          <div class="content">
+          <p> <%= step.comment %> </p>
+          </div>
+        </div>
+
+        <div id="hotel_<%= step.id %>" class="step-card-reco-content hidden">
+          <div>
+            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="hotel" data-id-step="<%= step.id %>"></i>
+          </div>
+          <h3>Hébergement(s)</h3></br>
+          <ul>
+            <%@hotels.where(step_id: step.id).each do |hotel| %>
+              <li class="content">
+                <strong> <%= hotel.address %>  </strong><%= hotel.price %>  </br> <%= hotel.name.capitalize %>
+                <div class="links">
+                <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_hotel_path(hotel) %>
+
+                </div>
+              </li>
+            <% end %>
+          </ul>
+          <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_step_hotel_path(step.id), class: "links-item links" %>
+        </div>
+
+        <div id="resto_<%= step.id %>" class="step-card-reco-content hidden">
+          <div>
+            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="resto" data-id-step="<%= step.id %>" ></i>
+          </div>
+          <h3>Restaurant(s)</h3></br>
+          <ul>
+            <%@restaurants.where(step_id: step.id).each do |restaurant| %>
+              <li>
+                <% if restaurant.love_tag == true %><i class="fas fa-heart love-tag"></i><% end %>
+                <%= restaurant.address %> <%= restaurant.price %>  -  <%= restaurant.name.capitalize %>  <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_restaurant_path(restaurant) %>
+
+              </li>
+            <% end %>
+          </ul>
+             <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_step_restaurant_path(step.id) %>
+        </div>
+
+        <div id="bar_<%= step.id %>" class="step-card-reco-content hidden">
+          <div>
+            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="bar" data-id-step="<%= step.id %>"></i>
+          </div>
+          <h3>Bar(s)</h3></br>
+          <ul>
+            <%@bars.where(step_id: step.id).each do |bar| %>
+              <li>
+                <% if bar.love_tag == true %><i class="fas fa-heart love-tag"></i><% end %>
+                <%= bar.address %> <%= bar.price %>  - <%= bar.name.capitalize %> <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_bar_path(bar) %>
+
+              </li>
+            <% end %>
+          </ul>
+             <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_step_bar_path(step.id) %>
+        </div>
+
+        <div id="acti_<%= step.id %>" class="step-card-reco-content hidden">
+          <div  >
+            <i class="fas fa-times-circle close" id="hotel_close_<%= step.id %>" data-item="acti" data-id-step="<%= step.id %>"></i>
+          </div>
+          <h3>Activités(s)</h3></br>
+          <ul>
+            <%@activities.where(step_id: step.id).each do |activity| %>
+              <li>
+                <% if activity.love_tag == true %><i class="fas fa-heart love-tag"></i><% end %>
+                <%= activity.name.capitalize %> <%= activity.price %>  -  <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_activity_path(activity) %>
+
+              </li>
+            <% end %>
+
+          </ul>
+          <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_step_activity_path(step.id) %>
+        </div>
+
+      </div>
+
+  </div>
+
+  </div>
+<% end %>
+
+
+
+
+
+
