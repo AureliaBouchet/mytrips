@@ -1,16 +1,28 @@
 <div class="search-banner">
 <div class="search-title">
   <h1><i class="fas fa-search"> </i> Rechercher une destination</h1>
-  <input type="text">
+  <div class="search-box">
+    <%= form_tag trips_path, class: "new-search-bar", method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control form-control-sm",
+        style: "font-size: 14px;",
+        id: "index-search",
+        placeholder: "Chercher"%>
+      <%= submit_tag value="Go", class: "btn-default"  %>
+    <% end %>
+  </div>
 </div>
 <div class="cloud" id="cA"><span id="sA"></span><span id="sB"></span></div>
 <div class="cloud" id="cB"><span id="sA"></span><span id="sB"></span></div>
 <!-- <div class="cloud" id="cC"><span id="sA"></span><span id="sB"></span></div> -->
 <div class="cloud" id="cD"><span id="sA"></span><span id="sB"></span></div>
 </div>
+
 <div class="trips-title">
-  <h1>Découvrez les derniers voyages</h1>
+  <h1><%= @title %> </h1>
 </div>
+
 <div class="cards">
   <% @trips.each do |trip| %>
     <% if trip.photo.blank? %>
@@ -48,4 +60,5 @@
   <% end %>
 
 </div>
+
 

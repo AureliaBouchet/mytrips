@@ -14,4 +14,15 @@ class Trip < ApplicationRecord
   belongs_to :user
 
   mount_uploader :photo, PhotoUploader
+
+  include PgSearch
+  pg_search_scope :global_search,
+  against: :address,
+  associated_against: {
+      steps: [:address]
+    },
+  using: {
+    :tsearch => {:prefix => true},
+    }
+
 end

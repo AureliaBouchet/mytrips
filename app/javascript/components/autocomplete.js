@@ -5,6 +5,16 @@ function autocomplete() {
     var hotelAddress = document.getElementById('hotel_address');
     var barAddress = document.getElementById('bar_address');
     var restaurantAddress = document.getElementById('restaurant_address');
+    var searchAddress = document.getElementById('index-search');
+
+    if (searchAddress) {
+      var autocomplete = new google.maps.places.Autocomplete(searchAddress, { types: [ 'geocode' ] });
+      google.maps.event.addDomListener(searchAddress, 'keydown', function(e) {
+        if (e.key === "Enter") {
+          e.preventDefault(); // Do not submit the form on Enter.
+        }
+      });
+    }
 
     if (stepAddress) {
       var autocomplete = new google.maps.places.Autocomplete(stepAddress, { types: [ 'geocode' ] });

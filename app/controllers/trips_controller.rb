@@ -1,6 +1,12 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all.where.not(user_id: current_user)
+    if params[:query].present?
+        @trips = Trip.global_search(params[:query])
+      @title = "Découvrez les voyages en lien avec votre recherche"
+    else
+      @trips = Trip.all.where.not(user_id: current_user).limit(10)
+        @title = "Découvrez les derniers voyages"
+    end
   end
 
   def show
