@@ -3,7 +3,15 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :users, only:[:show, :edit, :update]
+  resources :users, only:[:show, :edit, :update, :index] do
+    resources :relationships, only: [:create]
+  end
+  resources :relationships, only: [:destroy]
+   resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   resources :trips, only: [:index, :show, :new, :create, :update, :destroy, :edit] do
     resources :steps, only: [:new, :create]
@@ -19,6 +27,5 @@ Rails.application.routes.draw do
   resources :bars, only: [:update, :destroy, :edit]
   resources :activities, only: [:update, :destroy, :edit]
   resources :hotels, only: [:update, :destroy, :edit]
-
 
 end

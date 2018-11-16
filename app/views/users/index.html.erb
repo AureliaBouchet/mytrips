@@ -1,0 +1,14 @@
+<h1> Rechercher un profil</h1>
+ <div class="users-search-result">
+ <ul>
+  <% @users.each do |user| %>
+    <%unless user == current_user %>
+      <% if current_user.following.include? user %>
+        <p><%= cl_image_tag user.photo, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "big-profile-avatar"%> <%= user.name %> - <%= user.email %> | <span style="color: green; font-style: italic;">Abonné(e)</span></p>
+      <% else %>
+      <p>  <%= cl_image_tag user.photo, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "big-profile-avatar"%> <%= user.name %> - <%= user.email %> | <%= link_to "Suivre",  user_relationships_path(user.id), method: :post%></p>
+      <% end %>
+    <% end %>
+  <% end %>
+  </ul>
+</div>

@@ -12,6 +12,8 @@
   <div class="profile-activity">
     <div class="activity-detail"><p> <strong> <i class="fas fa-plane"></i> <%= @user.trips.count %></strong></br> voyages</p></div>
     <div class="activity-detail"> <p><strong> <i class="fas fa-project-diagram"></i> <%= @user.steps.count %></strong></br> étapes </p></div>
+    <div class="activity-detail"> <p><strong> <!-- <i class="fas fa-project-diagram"></i> --> <%= @user.following.count %></strong></br> comptes suivis </p></div>
+    <div class="activity-detail"> <p><strong> <!-- <i class="fas fa-project-diagram"></i> --> <%= @user.followers.count %></strong></br> followers </p></div>
   </div>
   <div class="profile-edit-link">
     <%= link_to "Modifier",  edit_user_registration_path, class: "btn-blue" %>
@@ -62,6 +64,10 @@
 </div>
 
 <div class="profile-title">
-<h1>Mon tableau</h1>
+  <h1>Mon tableau</h1>
 </div>
 
+<div class="profile-title">
+  <h1>Mon réseau</h1>
+ <%= link_to "Rechercher un ami", users_path %>
+</div>
