@@ -132,7 +132,8 @@ i {
   display: flex;
   align-items: start;
   justify-content: start;
-  background-color: #fafafa;
+  background-color: $light-gray;
+    flex-direction: column;
 }
 @media(max-width: 600px) {
   .global-container {
@@ -140,12 +141,12 @@ i {
   }
 }
 .step-advice{
-  width:400px;
+  width: 90%;
   margin: 5px auto;
   box-shadow: 1px 1px 1px $light-gray;
   border: 1px solid #efefef;
   background-color: white;
-  min-height: 300px;
+  // min-height: 300px;
   // height: 100vh;
     h3{
     margin: 10px 0;
