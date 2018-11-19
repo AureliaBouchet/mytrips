@@ -26,7 +26,7 @@
 <div class="cards">
   <% @trips.each do |trip| %>
     <% if trip.photo.blank? %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
+      <div class="card card-margin" style="background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
          url('images/trip.jpg')">
     <% else %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),

@@ -1,36 +1,40 @@
 <div class="profile-banner">
   <div class="profile-infos">
     <% if current_user.photo.file.nil? %>
-      <% user_avatar = 'user.jpg' %>
-      <%=image_tag user_avatar, class: "big-profile-avatar" %>
+    <% user_avatar = 'user.jpg' %>
+    <%=image_tag user_avatar, class: "big-profile-avatar" %>
     <% else %>
-      <% user_avatar = current_user.photo %>
-      <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "big-profile-avatar"%>
+    <% user_avatar = current_user.photo %>
+    <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "big-profile-avatar"%>
     <% end %>
-    <%= @user.name %>
+    <%= @user.name%> - <%= @user.email %>
   </div>
   <div class="profile-activity">
     <div class="activity-detail"><p> <strong> <i class="fas fa-plane"></i> <%= @user.trips.count %></strong></br> voyages</p></div>
     <div class="activity-detail"> <p><strong> <i class="fas fa-project-diagram"></i> <%= @user.steps.count %></strong></br> étapes </p></div>
+    <div class="activity-detail"> <p><strong> <!-- <i class="fas fa-project-diagram"></i> --> <%= @user.following.count %></strong></br> comptes suivis </p></div>
+    <div class="activity-detail"> <p><strong> <!-- <i class="fas fa-project-diagram"></i> --> <%= @user.followers.count %></strong></br> followers </p></div>
   </div>
   <div class="profile-edit-link">
     <%= link_to "Modifier",  edit_user_registration_path, class: "btn-blue" %>
   </div>
 </div>
 
-<div class="profile-title">
-  <h1>Mes voyages</h1>
-</div>
+<div class="user-container">
+  <div class="user-trips-container">
+    <div class="profile-title">
+     <h1>Mes voyages</h1>
+    </div>
 
 
-<div class="cards">
-  <% @trips.each do |trip| %>
+   <div class="cards">
+    <% @trips.each do |trip| %>
     <% if trip.photo.blank? %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
-         url('images/trip.jpg')">
-    <% else %>
+      <div class="card card-user-margin" style="background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
+      url('images/trip.jpg')">
+      <% else %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path trip.photo, height: 300, width: 400, crop: :fill %>')">
+      url('<%= cl_image_path trip.photo, height: 300, width: 400, crop: :fill %>')">
     <% end %>
       <div class="card-title">
         <h3> <%= trip.address %></h3></br>
@@ -45,23 +49,49 @@
           <%= trip.date_end.strftime("%-d %b %y") %>
         </p>
       </div>
-      <div class="edit-links">
+    <div class="edit-links">
 
       <%= link_to trip_path(trip.id),  method: :delete,
-                          data: { confirm: "Are you sure?" } do %>
-        <i class="far fa-trash-alt"></i>
+      data: { confirm: "Are you sure?" } do %>
+      <i class="far fa-trash-alt"></i>
       <% end %>
     </div>
-      <%= link_to "", trip_path(trip), class: "card-show-link" %>
-    </div>
+    <%= link_to "", trip_path(trip), class: "card-show-link" %>
+  </div>
   <% end %>
-<div class="card card-add-trip">
-  <i class="fas fa-plus-circle"></i>
-  <p> <%= link_to "", new_trip_path, class: "card-show-link"  %></p>
-</div>
+    <div class="card card-add-trip">
+      <i class="fas fa-plus-circle"></i>
+      <p> <%= link_to "", new_trip_path, class: "card-show-link"  %></p>
+    </div>
+  </div>
+
+  <div class="profile-title">
+    <h1><i class="far fa-bookmark"></i> Eléments enregistrés</h1>
+  </div>
 </div>
 
-<div class="profile-title">
-<h1>Mon tableau</h1>
+  <div class="user-networks">
+    <div class="user-network">
+      <div class="profile-title">
+        <h1>Comptes suivis</h1>
+        <% current_user.following.each do |followed| %>
+        <%= cl_image_tag followed.photo, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "small-profile-avatar"%>
+        <% end %>
+        <p> <%= link_to '<i class="fas fa-user-plus"></i>'.html_safe, users_path %></p>
+      </div>
+    </div>
+    <div class="user-network">
+      <div class="profile-title">
+        <h1>Followers </h1>
+        <% current_user.followers.each do |follower| %>
+       <p> <%= cl_image_tag follower.photo, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "small-profile-avatar"%> |
+          <% if current_user.following.include? follower%>
+           <span style="color: green; font-style: italic; font-size: 14px;">Abonné(e)</span> </p>
+          <% else %>
+           <%= link_to "Suivre",  user_relationships_path(follower.id), method: :post%> </p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-

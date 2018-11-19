@@ -12,7 +12,6 @@
   position: relative;
   box-shadow: 1px 1px 1px $light-gray;
   padding: 10px;
-  margin: 20px 30px;
   border: solid 1px $light-gray;
   display: flex;
    align-items: center;
@@ -32,6 +31,12 @@
     transition: all ease 0.4s;
   margin: 5px;
   }
+}
+.card-margin{
+  margin: 20px 30px;
+}
+.card-user-margin{
+  margin: 20px 30px;
 }
 .card-title{
   position: absolute;

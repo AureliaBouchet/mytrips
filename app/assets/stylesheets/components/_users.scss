@@ -1,0 +1,33 @@
+.users-search-result{
+  margin: 20px auto;
+
+  max-width: 600px;
+   box-shadow: 1px 1px 1px $light-gray;
+  border: 1px solid #efefef;
+  p{
+    margin: 10px 5px;
+    font-size: 16px;
+    // text-align: center;
+  }
+}
+
+
+.user-container{
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 50px;
+}
+.user-trips-container{
+  background-color: white;
+  margin: 0 15px;
+  box-shadow: 1px 1px 1px $light-gray;
+  border: 1px solid #efefef;
+}
+
+.user-network{
+  width: 300px;
+  background-color: white;
+  margin: 0 15px;
+  box-shadow: 1px 1px 1px $light-gray;
+  border: 1px solid #efefef;
+}

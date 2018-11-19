@@ -1,11 +1,15 @@
 class TripsController < ApplicationController
   def index
     if params[:query].present?
-        @trips = Trip.global_search(params[:query])
+        results = Trip.global_search(params[:query])
+      @trips = results.find_all { |trip| current_user.following.include? User.find(trip.user_id) }
       @title = "Découvrez les voyages en lien avec votre recherche"
     else
-      @trips = Trip.all.where.not(user_id: current_user).limit(10)
+      # @trips = Trip.all.where.not(user_id: current_user).limit(10)
         @title = "Découvrez les derniers voyages"
+        # @trips = current_user.following.trips
+        @trips = Trip.all.find_all { |trip| current_user.following.include? User.find(trip.user_id) }
+        # @trips = Trip.all.where(user_id)
     end
   end
 

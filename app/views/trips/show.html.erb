@@ -27,37 +27,39 @@
 
 
     <% if current_user.id == @trip.user_id  %>
-    <div class="global-container">
-      <div class="steps-cards-container">
-        <%= render 'steps/user_steps' %>
-        <div class="step-card">
-          <%= link_to "ajouter une étape", new_trip_step_path(@trip) %>
+
+      <div class="global-container">
+        <div class="step-advice">
+          <h3>Conseils pratiques</h3>
+          <ul>
+            <% @tips.each do |tip| %>
+            <li><%= tip %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="steps-cards-container">
+          <%= render 'steps/user_steps' %>
+          <div class="step-card">
+            <%= link_to "ajouter une étape", new_trip_step_path(@trip) %>
+          </div>
         </div>
       </div>
-      <div class="step-advice">
-        <h3>Conseils pratiques</h3>
-        <ul>
-          <% @tips.each do |tip| %>
-          <li><%= tip %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
 
     <% else %>
-    <div class="global-container">
-    <div class="steps-cards-container">
-      <%= render 'steps/steps' %>
-    </div>
-    <div class="step-advice">
-    <h3>Conseils pratiques</h3>
-    <ul>
-      <% @tips.each do |tip| %>
-      <li><%= tip %></li>
-      <% end %>
-    </ul>
-    </div>
-    </div>
+
+      <div class="global-container">
+        <div class="step-advice">
+          <h3>Conseils pratiques</h3>
+          <ul>
+            <% @tips.each do |tip| %>
+            <li><%= tip %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="steps-cards-container">
+          <%= render 'steps/steps' %>
+        </div>
+      </div>
 
     <% end %>
 
