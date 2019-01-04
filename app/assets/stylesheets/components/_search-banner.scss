@@ -1,12 +1,13 @@
 .search-banner{
   width: 100vw;
-  height: 80vh;
+  // height: 20vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: $light-blue;
+  background-color: white;
   overflow-x: hidden;
+  padding: 10px 0;
 }
 
 .search-title{
@@ -23,76 +24,76 @@
   }
 
 }
-@mixin custom-circ($width, $height:$width){
-  width:$width+px;
-  height:$height+px;
-  border-radius:50%;
-}
-
-.cloud{
-  position: absolute;
-  z-index: 111;
-  left: 100px;
-  height: 100px;
-  width: 300px;
-  // border-bottom: 5px solid white;
-  overflow: hidden;
-  &:after{
-    position: absolute;
-    content:'';
-    top: 60px;
-    @include custom-circ(100, 75);
-    background:white;
-  }
-  &:before{
-    position: absolute;
-    content:'';
-    top:20px;
-    left: 60px;
-    @include custom-circ(150, 100);
-    background: white;
-  }
-  & #sA{
-    position: absolute;
-    @include custom-circ(120, 100);
-    left: 182px;
-    top: 65px;
-    background: white;
-  }
-}
-
-// Individual Clouds //
-
-#cA{
-  top: 160px;
-  -webkit-transform: scale(1.2);
-  -webkit-animation: cloud 25s linear infinite alternate;
-}
-
-
-#cB{
-  left: -200px;
-  top: 80px;
-  -webkit-transform: scale(0.7) scaleX(-1);
-  -webkit-animation: cloud 20s linear infinite reverse;
-}
-
-// #cC{
-//   top: 265px;
-//   -webkit-animation: cloud 27s linear infinite reverse;
+// @mixin custom-circ($width, $height:$width){
+//   width:$width+px;
+//   height:$height+px;
+//   border-radius:50%;
 // }
 
-#cD{
-  top: 450px;
-  -webkit-transform: scale(0.5);
-  -webkit-animation: cloud 35s linear infinite alternate;
-}
+// .cloud{
+//   position: absolute;
+//   z-index: 111;
+//   left: 100px;
+//   height: 100px;
+//   width: 300px;
+//   // border-bottom: 5px solid white;
+//   overflow: hidden;
+//   &:after{
+//     position: absolute;
+//     content:'';
+//     top: 60px;
+//     @include custom-circ(100, 75);
+//     background:white;
+//   }
+//   &:before{
+//     position: absolute;
+//     content:'';
+//     top:20px;
+//     left: 60px;
+//     @include custom-circ(150, 100);
+//     background: white;
+//   }
+//   & #sA{
+//     position: absolute;
+//     @include custom-circ(120, 100);
+//     left: 182px;
+//     top: 65px;
+//     background: white;
+//   }
+// }
 
-@-webkit-keyframes cloud{
-from{
-  left:-50vw;
-}
-  to{
-    left:120vw;
-  }
-}
+// // Individual Clouds //
+
+// #cA{
+//   top: 160px;
+//   -webkit-transform: scale(1.2);
+//   -webkit-animation: cloud 25s linear infinite alternate;
+// }
+
+
+// #cB{
+//   left: -200px;
+//   top: 80px;
+//   -webkit-transform: scale(0.7) scaleX(-1);
+//   -webkit-animation: cloud 20s linear infinite reverse;
+// }
+
+// // #cC{
+// //   top: 265px;
+// //   -webkit-animation: cloud 27s linear infinite reverse;
+// // }
+
+// #cD{
+//   top: 450px;
+//   -webkit-transform: scale(0.5);
+//   -webkit-animation: cloud 35s linear infinite alternate;
+// }
+
+// @-webkit-keyframes cloud{
+// from{
+//   left:-50vw;
+// }
+//   to{
+//     left:120vw;
+//   }
+// }

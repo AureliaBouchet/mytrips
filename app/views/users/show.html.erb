@@ -1,25 +1,33 @@
+<!-- BANNER -->
 <div class="profile-banner">
+  <div class="profile-deconnexion">
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fas fa-sign-out-alt"></i>  <%= t(".sign_out", default: "Log out") %>
+    <% end %>
+  </div>
   <div class="profile-infos">
     <% if current_user.photo.file.nil? %>
-    <% user_avatar = 'user.jpg' %>
-    <%=image_tag user_avatar, class: "big-profile-avatar" %>
+      <% user_avatar = 'user.jpg' %>
+      <%=image_tag user_avatar, class: "big-profile-avatar" %>
     <% else %>
-    <% user_avatar = current_user.photo %>
-    <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "big-profile-avatar"%>
+      <% user_avatar = current_user.photo %>
+      <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "big-profile-avatar"%>
     <% end %>
     <%= @user.name%> - <%= @user.email %>
   </div>
+
   <div class="profile-activity">
     <div class="activity-detail"><p> <strong> <i class="fas fa-plane"></i> <%= @user.trips.count %></strong></br> voyages</p></div>
     <div class="activity-detail"> <p><strong> <i class="fas fa-project-diagram"></i> <%= @user.steps.count %></strong></br> étapes </p></div>
-    <div class="activity-detail"> <p><strong> <!-- <i class="fas fa-project-diagram"></i> --> <%= @user.following.count %></strong></br> comptes suivis </p></div>
-    <div class="activity-detail"> <p><strong> <!-- <i class="fas fa-project-diagram"></i> --> <%= @user.followers.count %></strong></br> followers </p></div>
+    <div class="activity-detail"> <p><strong> <%= @user.following.count %></strong></br> comptes suivis </p></div>
+    <div class="activity-detail"> <p><strong> <%= @user.followers.count %></strong></br> followers </p></div>
   </div>
   <div class="profile-edit-link">
     <%= link_to "Modifier",  edit_user_registration_path, class: "btn-blue" %>
   </div>
 </div>
 
+<!-- TRIPS -->
 <div class="user-container">
   <div class="user-trips-container">
     <div class="profile-title">
@@ -27,15 +35,10 @@
     </div>
 
 
-   <div class="cards">
+  <div class="cards">
+
     <% @trips.each do |trip| %>
-    <% if trip.photo.blank? %>
-      <div class="card card-user-margin" style="background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
-      url('images/trip.jpg')">
-      <% else %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-      url('<%= cl_image_path trip.photo, height: 300, width: 400, crop: :fill %>')">
-    <% end %>
+    <div class="card card-user-margin">
       <div class="card-title">
         <h3> <%= trip.address %></h3></br>
         <p> <%= trip.title %></p>
@@ -43,31 +46,38 @@
         <p class="blank-steps"> <i class="fas fa-project-diagram"></i> <%= pluralize nb_steps, "étape" %></p>
       </div>
 
+        <% if trip.photo.blank? %>
+      <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
+        url('images/trip.jpg')">
+        <% else %>
+      <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+        url('<%= cl_image_path trip.photo, height: 300, width: 400, crop: :fill %>')">
+        <% end %>
+      </div>
+
       <div class="card-dates">
-        <p> Du
+        <p>
           <%= trip.date_begin.strftime("%-d %b %y") %> au
           <%= trip.date_end.strftime("%-d %b %y") %>
         </p>
       </div>
-    <div class="edit-links">
 
-      <%= link_to trip_path(trip.id),  method: :delete,
-      data: { confirm: "Are you sure?" } do %>
-      <i class="far fa-trash-alt"></i>
-      <% end %>
+      <div class="edit-links">
+        <%= link_to trip_path(trip.id),  method: :delete,
+        data: { confirm: "Are you sure?" } do %>
+        <i class="far fa-trash-alt"></i>
+        <% end %>
+      </div>
+
+      <%= link_to "", trip_path(trip), class: "card-show-link" %>
     </div>
-    <%= link_to "", trip_path(trip), class: "card-show-link" %>
-  </div>
-  <% end %>
-    <div class="card card-add-trip">
+    <% end %>
+    <div class="card-add-trip">
       <i class="fas fa-plus-circle"></i>
       <p> <%= link_to "", new_trip_path, class: "card-show-link"  %></p>
     </div>
   </div>
 
-  <div class="profile-title">
-    <h1><i class="far fa-bookmark"></i> Eléments enregistrés</h1>
-  </div>
 </div>
 
   <div class="user-networks">
@@ -94,4 +104,5 @@
       </div>
     </div>
   </div>
+
 </div>

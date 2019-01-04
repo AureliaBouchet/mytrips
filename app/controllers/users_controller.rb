@@ -6,7 +6,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if params[:query].present?
+      @users = User.user_search(params[:query])
+    else
+      @users = User.all
+    end
 
   end
 

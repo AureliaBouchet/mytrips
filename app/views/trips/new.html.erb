@@ -5,12 +5,13 @@
   <%= simple_form_for @trip do |f| %>
     <%= f.input :address, label: 'Localisation' %>
     <%= f.input :title, label: 'Sous-titre' %>
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
     <%= f.input :date_begin, label: 'Date début' %>
     <%= f.input :date_end, label: 'Date fin'%>
     <%#= f.input :photo, label: 'Ajouter une photo' %>
-    <%= f.input :photo %>
-    <%= f.input :photo_cache, as: :hidden %>
-    <%= f.submit "Ajouter un voyage", class: "btn btn-primary" %>
+    <%= f.submit "Créer mon voyage", class: "btn btn-primary" %>
+    <%= link_to "Retour à mon compte", user_path(current_user) %>
   <% end %>
 </div>
 </div>

@@ -1,22 +1,16 @@
-<div class="search-banner">
-<div class="search-title">
-  <h1><i class="fas fa-search"> </i> Rechercher une destination</h1>
-  <div class="search-box">
-    <%= form_tag trips_path, class: "new-search-bar", method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control form-control-sm",
-        style: "font-size: 14px;",
-        id: "index-search",
-        placeholder: "Chercher"%>
-      <%= submit_tag value="Go", class: "btn-default"  %>
-    <% end %>
+<div class="search-banner hidden-md hidden-lg">
+   <div class="search-box">
+      <%= form_tag trips_path, class: "new-search-bar", method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control form-control-sm",
+          style: "font-size: 14px; width: 300px",
+          id: "index-search",
+          placeholder: "Rechercher une destination"%>
+        <%= submit_tag value="Go", class: "btn-default"  %>
+      <% end %>
   </div>
-</div>
-<div class="cloud" id="cA"><span id="sA"></span><span id="sB"></span></div>
-<div class="cloud" id="cB"><span id="sA"></span><span id="sB"></span></div>
-<!-- <div class="cloud" id="cC"><span id="sA"></span><span id="sB"></span></div> -->
-<div class="cloud" id="cD"><span id="sA"></span><span id="sB"></span></div>
+
 </div>
 
 <div class="trips-title">
@@ -25,40 +19,42 @@
 
 <div class="cards">
   <% @trips.each do |trip| %>
-    <% if trip.photo.blank? %>
-      <div class="card card-margin" style="background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
-         url('images/trip.jpg')">
-    <% else %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path trip.photo, height: 300, width: 400, crop: :fill %>')">
-    <% end %>
-      <div class="card-title">
-        <h3> <%= trip.address %></h3></br>
-        <p> <%= trip.title %></p>
-        <%nb_steps = Step.where(trip_id: trip.id).length %>
-        <p class="blank-steps"> <i class="fas fa-project-diagram"></i> <%= pluralize nb_steps, "étape" %></p>
+  <div class="card card-margin">
+    <div class="card-title">
+      <h3> <%= trip.address %></h3></br>
+      <p> <%= trip.title %></p>
+      <%nb_steps = Step.where(trip_id: trip.id).length %>
+      <div class="">
+      <p class="blank-steps"> <i class="fas fa-project-diagram"></i> <%= pluralize nb_steps, "étape" %></p>
       </div>
-
-      <div class="card-dates">
-        <p> Du
-          <%= trip.date_begin.strftime("%-d %b %y") %> au
-          <%= trip.date_end.strftime("%-d %b %y") %>
-        </p>
-      </div>
-      <div class="card-photo">
+      <div >
         <% trip_creator = User.find(trip.user_id) %>
         <% if trip_creator.photo.file.nil? %>
             <%=image_tag 'user.jpg', class: "small-profile-avatar card-avatar" %>
           <% else %>
              <%= cl_image_tag trip_creator.photo, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "small-profile-avatar card-avatar" %>
           <% end %>
-
       </div>
+    </div>
+      <% if trip.photo.blank? %>
+        <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
+           url('images/trip.jpg')">
+      <% else %>
+        <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+           url('<%= cl_image_path trip.photo, height: 300, width: 400, crop: :fill %>')">
+      <% end %>
+        </div>
 
-      <%= link_to "", trip_path(trip), class: "card-show-link" %>
+        <div class="card-dates">
+          <p>
+            <%= trip.date_begin.strftime("%-d %b %y") %> au
+            <%= trip.date_end.strftime("%-d %b %y") %>
+          </p>
+        </div>
+
+        <%= link_to "", trip_path(trip), class: "card-show-link" %>
     </div>
   <% end %>
-
 </div>
 
 

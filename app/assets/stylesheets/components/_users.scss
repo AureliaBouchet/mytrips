@@ -1,3 +1,9 @@
+.users-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .users-search-result{
   margin: 20px auto;
 
@@ -7,7 +13,6 @@
   p{
     margin: 10px 5px;
     font-size: 16px;
-    // text-align: center;
   }
 }
 
@@ -17,7 +22,9 @@
   align-items: flex-start;
   margin-bottom: 50px;
 }
+
 .user-trips-container{
+  flex: 1 100%;
   background-color: white;
   margin: 0 15px;
   box-shadow: 1px 1px 1px $light-gray;
@@ -30,4 +37,26 @@
   margin: 0 15px;
   box-shadow: 1px 1px 1px $light-gray;
   border: 1px solid #efefef;
+  margin-bottom: 20px;
+}
+@media(max-width: 600px) {
+  .user-container {
+    flex-direction: column;
+  }
+  .user-trips-container{
+    width: 100%;
+    margin: 10px 0;
+  }
+  .user-networks{
+    width: 100%;
+    margin: 10px 0;
+  }
+  .user-network{
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+.user-search{
+  max-width: 600px;
 }

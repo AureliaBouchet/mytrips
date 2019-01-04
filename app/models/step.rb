@@ -13,6 +13,7 @@ class Step < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
 
+
 # include PgSearch
 #   pg_search_scope :search_address,
 #   against: :address,

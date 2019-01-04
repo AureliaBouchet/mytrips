@@ -1,50 +1,79 @@
 <div class="navbar">
 
   <div class="navbar-left">
-    <i class="fas fa-map"></i>
-    <%= link_to 'My Holidays Book', root_path %>
+    <!-- <i class="fas fa-map"></i> -->
+    <%= link_to 'Trip Trap', root_path %>
   </div>
 
   <% if user_signed_in? %>
 
   <!-- LARGE DEVICE -->
 
-  <!-- <div class="navbar-right hidden-xs hidden-sm"> -->
+  <div class="navbar-right hidden-xs hidden-sm">
     <div class="navbar-right">
 
       <div class="navbar-item">
-        <%= link_to  trips_path do %>
-          <i class="fas fa-search"> </i>Rechercher une destination
-        <% end %>
-      </div>
-
-      <div class="navbar-item">
-        <div class="dropdown">
-          <% if current_user.photo.file.nil? %>
-            <% user_avatar = 'user.jpg' %>
-            <%=image_tag user_avatar, class: "small-profile-avatar dropdown-toggle", id: "navbar-menu", "data-toggle" => "dropdown" %>
-
-          <% else %>
-            <% user_avatar = current_user.photo %>
-            <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "small-profile-avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-
+        <div class="search-box">
+          <%= form_tag trips_path, class: "new-search-bar", method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control form-control-sm",
+              style: "font-size: 14px; width: 300px",
+              id: "index-search",
+              placeholder: "Rechercher une destination"%>
+            <%= submit_tag value="Go", class: "btn-default"  %>
           <% end %>
-          <%# user_avatar = 'user.jpg' %>
-
-          <ul class="dropdown-menu dropdown-menu-right navbar-dropdown-menu">
-            <!-- <li><%#= link_to "Rechercher un voyage", trips_path %> </li> -->
-            <li><%= link_to "Mon compte", user_path(current_user) %></li>
-
-            <li><%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt"></i>  <%= t(".sign_out", default: "Log out") %>
-                <% end %>
-            </li>
-          </ul>
         </div>
       </div>
-
-
+      <div class="navbar-item">
+        <%= link_to  trips_path do %>
+          <i class="fas fa-home"></i>
+          <p>Accueil</p>
+        <% end %>
+      </div>
+      <div class="navbar-item">
+        <%= link_to  do %>
+          <i class="fas fa-bookmark"></i>
+          <p>Enregistrements</p>
+        <% end %>
+      </div>
+      <div class="navbar-item">
+        <%= link_to  user_path(current_user) do %>
+          <i class="fas fa-user"></i>
+          <p>Compte</p>
+        <% end %>
+      </div>
     </div>
+  </div>
+
+  <!-- SMALL DEVICE -->
+  <div class="navbar-right hidden-md hidden-lg">
+    <div class="navbar-item">
+        <%= link_to  trips_path do %>
+          <i class="fas fa-search"> </i>
+          <p>Rechercher</p>
+        <% end %>
+      </div>
+      <div class="navbar-item">
+        <%= link_to  trips_path do %>
+          <i class="fas fa-home"></i>
+          <p>Accueil</p>
+        <% end %>
+      </div>
+      <div class="navbar-item">
+        <%= link_to  do %>
+          <i class="fas fa-bookmark"></i>
+          <p>Enregistrements</p>
+        <% end %>
+      </div>
+      <div class="navbar-item">
+        <%= link_to  user_path(current_user) do %>
+          <i class="fas fa-user"></i>
+          <p>Compte</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
   <%else %>
 

@@ -22,7 +22,7 @@
   top: 20px;
   font-style: lighter;
   color: $blue;
-  font-family: $headers-font;
+  font-family: $logo-font;
   a {
     text-decoration: none;
   }
@@ -41,6 +41,18 @@
 .navbar-item {
   cursor: pointer;
   padding: 0 20px;
+  p{
+    font-size: 10px;
+    margin: 0;
+  }
+  a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  a:hover{
+    text-decoration: none;
+  }
 }
 
 /* Dropdown menu */
@@ -71,4 +83,14 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+.new-search-bar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .btn-default{
+    border: none;
+    background-color: none;
+  }
 }
