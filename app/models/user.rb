@@ -20,6 +20,12 @@ class User < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
 
+  include PgSearch
+  pg_search_scope :user_search,
+  against: [:name, :email],
+  using: {
+    :tsearch => {:prefix => true},
+    }
 
     # Follows a user.
   def follow(other_user)

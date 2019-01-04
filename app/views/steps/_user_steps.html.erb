@@ -2,7 +2,7 @@
   <div class="step-card">
 
     <div class="step-card-top">
-      <h3> <%= index + 1 %>. <%= step.address %></h3> <p><i class="fas fa-calendar"></i> <%= (step.date_end - step.date_begin).to_i %> nuits</p>
+      <h3> <%= index + 1 %>. <%= step.address %></h3> <p><i class="fas fa-calendar"></i> <%= pluralize (step.date_end - step.date_begin).to_i, "nuit" %> </p>
     </div>
 
       <% if step.photo.blank? %>

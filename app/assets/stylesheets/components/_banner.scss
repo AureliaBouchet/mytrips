@@ -73,6 +73,7 @@ p{
   width: 50%;
   height: 400px;
   text-align: center;
+  position: relative;
   p{
     font-size: 16px;
     margin: 20px;
@@ -87,13 +88,12 @@ p{
 // ---------------------- PROFILE
 
 .profile-banner{
-  height: 300px;
+  min-height: 300px;
   background-color: $light-blue;
   // background: linear-gradient($blue, $light-blue);
   display: flex;
   align-items: center;
   justify-content: center;
-  // flex-wrap: wrap;
   flex-direction: column;
   position: relative;
   margin-bottom: 50px;
@@ -111,8 +111,19 @@ p{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  font-size: 14px;
 }
-
+.profile-deconnexion{
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  font-size: 16px;
+  a:hover{
+    color:white;
+    text-decoration: none;
+  }
+}
 .activity-detail{
   margin: 20px;
   // background-color: white;

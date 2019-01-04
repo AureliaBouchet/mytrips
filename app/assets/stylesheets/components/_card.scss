@@ -7,53 +7,48 @@
 
 .card{
   width: 300px;
-  height: 200px;
   border-radius: 2px;
   position: relative;
   box-shadow: 1px 1px 1px $light-gray;
   padding: 10px;
   border: solid 1px $light-gray;
   display: flex;
-   align-items: center;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
-  h3 {
+}
+.card-margin{
+  margin: 10px 20px;
+}
+.card-user-margin{
+  margin: 5px;
+}
+.card-title{
+  width: 100%;
+  padding: 5px;
+  background-color: white;
+  h3{
+    text-align: left;
+    margin:0;
     font-size :20px;
-    color: white
+    color: $gray;
   }
   p {
     font-size: 14px;
-    color: $light-gray;
-  }
-  &:hover{
-    width: 315px;
-    height: 215px;
-    transition: all ease 0.4s;
-  margin: 5px;
   }
 }
-.card-margin{
-  margin: 20px 30px;
-}
-.card-user-margin{
-  margin: 20px 30px;
-}
-.card-title{
-  position: absolute;
-  top: 5px;
-  left:5px;
-  width: 75%;
-  h3{
-  text-align: left;
-    margin:0;
-  }
+.card-photo{
+  width: 100%;
+  height: 200px;
 }
 .card-dates{
-  position: absolute;
-  bottom: 5px;
   border-top: solid 1px white;
   width: 90%;
   text-align: center;
+  p{
+    font-size: 14px;
+    color: $gray;
+  }
 }
 
 .card-show-link {
@@ -69,6 +64,9 @@
   align-items: center;
   justify-content: center;
   font-size: 40px;
+  width: 300px;
+  position: relative;
+  margin: 10px 0;
 }
 
 
@@ -78,9 +76,10 @@
   border-radius: 4px;
   width: 150px;
   padding: 4px;
-  color: white;
   box-shadow: 1px 1px 1px white;
   margin-top: 10px;
+  color: white;
+
 }
 
 .edit-links{
@@ -91,5 +90,4 @@
   a {
   color:white;
   }
-
 }

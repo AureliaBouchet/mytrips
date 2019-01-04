@@ -1,4 +1,19 @@
+<div class="users-container">
 <h1> Rechercher un profil</h1>
+ <div class="user-search">
+   <!-- <div class="search-box"> -->
+    <%= form_tag users_path, class: "new-search-bar", method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control form-control-sm",
+        style: "font-size: 14px;",
+        id: "user-search",
+        placeholder: "Chercher"%>
+      <%= submit_tag value="Go", class: "btn-default"  %>
+    <% end %>
+  <!-- </div> -->
+ </div>
+
  <div class="users-search-result">
  <ul>
   <% @users.each do |user| %>
@@ -11,4 +26,5 @@
     <% end %>
   <% end %>
   </ul>
+</div>
 </div>

@@ -8,12 +8,21 @@
     <h1><%= @trip.address %></h1>
     <h4>Du <%= @trip.date_begin.strftime("%-d %b %y") %> au <%= @trip.date_end.strftime("%-d %b %y") %> (<%= (@trip.date_end - @trip.date_begin).to_i %> nuits)</h4>
     <p><%= @trip.title %></p>
-    <div><p class="blank-steps"> <i class="fas fa-project-diagram"></i> <%= @steps.length %> étapes</p></div>
+    <div><p class="blank-steps"> <i class="fas fa-project-diagram"></i> <%= pluralize @steps.length, "étape" %></p></div>
     <% if current_user.id == @trip.user_id  %>
     <div class="edit-trip-link">
       <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_trip_path(@trip) %>
     </div>
     <% end %>
+    <div class="card-photo">
+        <% trip_creator = User.find(@trip.user_id) %>
+        <% if trip_creator.photo.file.nil? %>
+            <%=image_tag 'user.jpg', class: "small-profile-avatar card-avatar" %>
+          <% else %>
+             <%= cl_image_tag trip_creator.photo, crop: :thumb, gravity: :face, width: 300 , height: 300, class: "small-profile-avatar card-avatar" %>
+          <% end %>
+
+      </div>
   </div>
   <div class="step-banner-part">
   <div
@@ -29,14 +38,7 @@
     <% if current_user.id == @trip.user_id  %>
 
       <div class="global-container">
-        <div class="step-advice">
-          <h3>Conseils pratiques</h3>
-          <ul>
-            <% @tips.each do |tip| %>
-            <li><%= tip %></li>
-            <% end %>
-          </ul>
-        </div>
+
         <div class="steps-cards-container">
           <%= render 'steps/user_steps' %>
           <div class="step-card">
@@ -48,14 +50,7 @@
     <% else %>
 
       <div class="global-container">
-        <div class="step-advice">
-          <h3>Conseils pratiques</h3>
-          <ul>
-            <% @tips.each do |tip| %>
-            <li><%= tip %></li>
-            <% end %>
-          </ul>
-        </div>
+
         <div class="steps-cards-container">
           <%= render 'steps/steps' %>
         </div>
