@@ -14,3 +14,22 @@
   align-items: center;
   justify-content: space-around;
 }
+
+label {
+  color: $blue;
+}
+
+.form-group {
+  border-bottom: solid 1px $blue;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.date-form {
+  display: flex;
+}
+
+.optional {
+  font-style: italic;
+  font-weight: lighter;
+}
