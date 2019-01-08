@@ -1,5 +1,6 @@
 class Bar < ApplicationRecord
   validates :price, inclusion: { in: ['','€', '€€', '€€€'] }
+  validates :address, presence: true
   belongs_to :step
 
   geocoded_by :address

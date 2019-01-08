@@ -1,40 +1,17 @@
 <h1>Ajouter une étape à mon voyage</h1>
-<% if @trip.steps.empty? %>
-    <%= check_box_tag "step" %> Mon voyage ne comporte qu'une seule étape
+
 <div class="form-container">
-
-    <div class="newtrip-form">
-    <%= simple_form_for [@trip, @step] do |f| %>
-      <%= f.input :address, label: 'Localisation' %>
-      <%= f.input :place, label: 'Sous-titre' %>
-      <%= f.input :photo %>
-      <%= f.input :photo_cache, as: :hidden %>
-
-      <div class="date-form">
-        <%= f.input :date_begin, as: :date, label: 'Date début', selected: @trip.steps.last.date_end %>
-        <%= f.input :date_end, label: 'Date fin', selected: @trip.date_end%>
-      </div>
-      <%= f.input :comment, label: "Commentaire", as: :text, rows: 6 %>
-      <%= f.input :love_tag, label: "Coup de coeur"%>
-
-
-      <%= f.submit "Ajouter l'étape", class: "btn btn-primary" %>
-    <% end %>
-    <%= link_to "Plus tard", trip_path(@trip) %>
-  </div>
-</div>
-  <% else %>
-
   <div class="newtrip-form">
     <%= simple_form_for [@trip, @step] do |f| %>
       <%= f.input :address, label: 'Localisation' %>
-      <%= f.input :place, label: 'Sous-titre' %>
+      <%= f.input :place, label: 'Commentaire' %>
       <%= f.input :photo %>
       <%= f.input :photo_cache, as: :hidden %>
 
       <div class="date-form">
-        <%= f.input :date_begin, as: :date, label: 'Date début', selected: @trip.date_begin %>
-        <%= f.input :date_end, label: 'Date fin', selected: @trip.date_end%>
+         <%#= f.input :date_begin, as: :date, label: 'Date début', selected: @trip.steps.last.date_end %>
+        <%#= f.input :date_end, label: 'Date fin', selected: @trip.date_end%>
+        <%= f.input :night, label: 'Nombre de nuits'%>
       </div>
       <%= f.input :comment, label: "Commentaire", as: :text, rows: 6 %>
       <%= f.input :love_tag, label: "Coup de coeur"%>
@@ -44,6 +21,6 @@
     <% end %>
     <%= link_to "Plus tard", trip_path(@trip) %>
   </div>
-
 </div>
-  <% end %>
+</div>
+
