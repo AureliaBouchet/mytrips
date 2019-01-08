@@ -3,8 +3,7 @@
     <%= simple_form_for [@step, @hotel] do |f| %>
       <%= f.input :address, label: 'Hotel' %>
       <%= f.input :name, label: 'Commentaire' %>
-      <!-- <%=# f.input :price, label: 'Prix' %> -->
-   <%=  f.input :price, collection: ['€' , '€€', '€€€' ], as: :radio_buttons  %>
+      <%=  f.input :price, collection: ['€' , '€€', '€€€' ], label: 'Prix', as: :radio_buttons  %>
       <%#= f.input :love_tag, label: "Coup de coeur"%>
 
       <%= f.submit "Modifer", class: "btn btn-primary" %>

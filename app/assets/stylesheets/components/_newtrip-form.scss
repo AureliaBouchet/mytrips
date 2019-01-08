@@ -19,7 +19,7 @@ label {
   color: $blue;
 }
 
-.form-group {
+.form-group, .form-item {
   border-bottom: solid 1px $blue;
   margin-bottom: 20px;
   padding-bottom: 20px;
@@ -32,4 +32,33 @@ label {
 .optional {
   font-style: italic;
   font-weight: lighter;
+}
+
+.hotel-price{
+  display:flex;
+}
+
+.collection_radio_buttons {
+  font-size: 16px;
+  font-weight: lighter;
+  font-style: normal;
+  margin-left: 5px;
+}
+.form-label{
+  color: $blue;
+  font-size: 18px;
+  border: none;
+}
+
+.input-price{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.form-label-price {
+  font-size: 14px;
+  color: $blue;
+  font-style: italic;
 }

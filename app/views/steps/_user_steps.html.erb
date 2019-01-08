@@ -2,7 +2,7 @@
   <div class="step-card">
 
     <div class="step-card-top">
-      <h3> <%= index + 1 %>. <%= step.address %></h3> <p><i class="fas fa-calendar"></i> <%= pluralize (step.date_end - step.date_begin).to_i, "nuit" %> </p>
+      <h3> <%#= index + 1 %> <%= step.address %></h3> <p><i class="fas fa-calendar"></i> <%= pluralize step.night, "nuit" %> </p>
     </div>
 
       <% if step.photo.blank? %>
@@ -31,19 +31,28 @@
       <div class="step-card-part" id="reco_content_<%= step.id %>">
 
         <div id="hotel_<%= step.id %>" class="step-card-reco-content ">
+          <%= link_to '<i class="fas fa-plus-circle"> Ajouter un hôtel</i>'.html_safe, new_step_hotel_path(step.id), class: "links-item links" %>
           <ul>
             <%@hotels.where(step_id: step.id).each do |hotel| %>
               <li>
                 <i class="fas fa-bed"></i>
-                <strong><%= hotel.address %></strong>
-                <%= hotel.price %>
-                <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_hotel_path(hotel) %>
-              </br>
-                <%= hotel.name.capitalize %>
+                <strong><%= hotel.address %></strong>  <%= link_to '<i class="fas fa-pen-square"></i>'.html_safe, edit_hotel_path(hotel) %>
+                <ul>
+                  <li> Prix <%= hotel.price %> /
+                    Note <% hotel.rating.to_i.times do  %>
+                      <span class="glyphicon glyphicon-star"></span>
+                    <% end %>
+                    <% hotel.blank_stars.times do %>
+                      <span class="glyphicon glyphicon-star-empty"></span>
+                    <% end %>
+                  </li>
+                  <li> <%= hotel.name.capitalize %></li>
+                </ul>
               </li>
+            </br>
             <% end %>
           </ul>
-          <%= link_to '<i class="fas fa-plus-circle"> Ajouter un hôtel</i>'.html_safe, new_step_hotel_path(step.id), class: "links-item links" %>
+
         </div>
 
         <div id="resto_<%= step.id %>" class="step-card-reco-content ">

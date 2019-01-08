@@ -98,6 +98,7 @@ i {
 
 .step-card-reco-content{
   padding: 0 10px;
+  margin-bottom: 20px;
 }
 
 .step-card-links{
@@ -155,4 +156,16 @@ i {
     font-style: lighter;
     text-align: center;
   }
+}
+
+.fa-pen-square {
+  font-size: 20px;
+}
+
+strong {
+  color: $blue;
+}
+
+.glyphicon {
+  color: #f9e052;
 }

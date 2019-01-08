@@ -16,14 +16,16 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
     @tips = Tip.where(trip_id: params[:id])
-    @steps = Step.where(trip_id: params[:id]).sort_by{|step| step.date_begin}
+    # @steps = Step.where(trip_id: params[:id]).sort_by{|step| step.date_begin}
+    @steps = Step.where(trip_id: params[:id])
     @step = Step.new
     @restaurants = @trip.restaurants
     @bars = @trip.bars
     @hotels = @trip.hotels
     @activities = @trip.activities
 
-    @steps_geoloc = Step.where(trip_id: params[:id]).where.not(latitude: nil, longitude: nil).sort_by{|step| step.date_begin}
+    # @steps_geoloc = Step.where(trip_id: params[:id]).where.not(latitude: nil, longitude: nil).sort_by{|step| step.date_begin}
+    @steps_geoloc = Step.where(trip_id: params[:id]).where.not(latitude: nil, longitude: nil)
 
     @markers = @steps_geoloc.map do |step|
 

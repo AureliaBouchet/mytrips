@@ -4,7 +4,6 @@
 <div class="newtrip-form">
   <%= simple_form_for @trip do |f| %>
     <%= f.input :address, label: 'Localisation' %>
-    <%= f.input :title, label: 'Sous-titre' %>
     <%= f.input :photo %>
     <%= f.input :photo_cache, as: :hidden %>
     <div class="date-form">
